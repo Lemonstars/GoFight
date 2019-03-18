@@ -1,3 +1,7 @@
+import ui.MainUi;
+
+import javax.swing.*;
+
 /**
  * @author 刘兴
  * @version 1.0
@@ -5,6 +9,10 @@
  */
 public class Main {
 
+    public static void main(String[] args){
 
+        SwingUtilities.invokeLater(MainUi::new);
+
+    }
 
 }
