@@ -10,13 +10,13 @@ import java.awt.*;
  */
 public class RolePanel extends JPanel{
 
-    private JLabel[] roleLabel = new JLabel[3];
-    private JLabel[] valueLabel = new JLabel[3];
-    private String[] roleStr = {"角色", "攻击值", "防守值"};
-    private String[] valueStr = {"法师", "10", "10"};
+    private JLabel[] roleLabel = new JLabel[6];
+    private JLabel[] valueLabel = new JLabel[6];
+    private String[] roleStr = {"角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
+    private String[] valueStr = {"法师", "100", "10", "10", "10", "10"};
 
     public RolePanel() {
-        this.setBounds(800, 0, 200, 400);
+        this.setBounds(800, 0, 200, 200);
         this.setLayout(null);
         this.setBackground(new Color(186, 231, 255));
 
@@ -35,9 +35,9 @@ public class RolePanel extends JPanel{
 
             int roleX = 30;
             int valueX = 110;
-            int y = 20 + 40 * i;
-            int width = 60;
-            int height = 40;
+            int y = 10 + 30 * i;
+            int width = 50;
+            int height = 30;
 
             roleLabel[i].setBounds(roleX, y, width, height);
             valueLabel[i].setBounds(valueX, y, width, height);

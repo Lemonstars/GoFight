@@ -13,16 +13,21 @@ public class OperationPanel extends JPanel{
     private JButton[] directionButton = new JButton[4];
     private String[] directionStr = {"上", "下", "左", "右"};
 
+    private JButton[] settingButton = new JButton[3];
+    private String[] settingStr = {"保存进度", "退出游戏", "重新开始"};
+
     public OperationPanel() {
-        this.setBounds(800, 400, 200, 200);
+        this.setBounds(800, 200, 200, 400);
         this.setLayout(null);
         this.setBackground(new Color(91, 213, 255));
 
-        configButton();
+        configDirectionButton();
+        configSettingButton();
 
         this.setVisible(true);
     }
-    private void configButton(){
+
+    private void configDirectionButton(){
         for(int i=0; i<directionButton.length; i++){
             directionButton[i] = new JButton();
             directionButton[i].setText(directionStr[i]);
@@ -36,6 +41,20 @@ public class OperationPanel extends JPanel{
 
     }
 
+    private void configSettingButton(){
+        for(int i=0; i<settingButton.length; i++){
+            settingButton[i] = new JButton();
+            settingButton[i].setText(settingStr[i]);
+
+            int x = 50;
+            int y = 210 + 60 * i;
+            int width = 100;
+            int height = 50;
+            settingButton[i].setBounds(x, y, width, height);
+            this.add(settingButton[i]);
+        }
+
+    }
 
 
 }
