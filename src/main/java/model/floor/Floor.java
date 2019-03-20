@@ -1,5 +1,7 @@
 package model.floor;
 
+import model.thing.ThingType;
+
 /**
  * @author 刘兴
  * @version 1.0
@@ -11,6 +13,6 @@ public interface Floor {
      * 获取楼层的物品分布信息
      * @return
      */
-    int[][] getFloorDistribution();
+    ThingType[][] getFloorDistribution();
 
 }

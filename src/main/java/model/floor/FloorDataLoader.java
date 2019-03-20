@@ -1,6 +1,8 @@
 package model.floor;
 
 import constant.MapConstant;
+import model.thing.ThingPic;
+import model.thing.ThingType;
 
 import java.io.*;
 
@@ -11,11 +13,11 @@ import java.io.*;
  */
 public class FloorDataLoader {
 
-    public int[][] loadFloorData(String floorFileName){
-        int[][] floor = new int[MapConstant.ROW][MapConstant.COL];
+    public ThingType[][] loadFloorData(String floorFileName){
+        ThingType[][] floor = new ThingType[MapConstant.ROW][MapConstant.COL];
         for(int i=0; i<MapConstant.ROW; i++){
             for(int j=0; j<MapConstant.COL; j++){
-                floor[i][j] = -1;
+                floor[i][j] = ThingType.TILE;
             }
         }
 
@@ -31,7 +33,8 @@ public class FloorDataLoader {
                 int x = Integer.valueOf(lineStr[0]);
                 int y = Integer.valueOf(lineStr[1]);
                 int type = Integer.valueOf(lineStr[2]);
-                floor[x][y] = type;
+                ThingType thingType = ThingPic.convertIdx2Type(type);
+                floor[x][y] = thingType;
             }
         }catch (IOException e){
             e.printStackTrace();

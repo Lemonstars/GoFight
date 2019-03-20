@@ -1,5 +1,7 @@
 package model.floor;
 
+import model.thing.ThingType;
+
 /**
  * @author 刘兴
  * @version 1.0
@@ -8,7 +10,7 @@ package model.floor;
 public class FirstFloor implements Floor{
 
     @Override
-    public int[][] getFloorDistribution() {
+    public ThingType[][] getFloorDistribution() {
         FloorDataLoader floorDataLoader = new FloorDataLoader();
         return floorDataLoader.loadFloorData("map/first-floor.txt");
     }
