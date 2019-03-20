@@ -30,7 +30,7 @@ public class MapPanel extends JPanel{
         int size = 40;
 
         FloorFactory floorFactory = new FloorFactory();
-        Floor firstFloor = floorFactory.createFloor(1);
+        Floor firstFloor = floorFactory.createFloor(3);
         ThingType[][] distribution = firstFloor.getFloorDistribution();
 
         String fileUrl;
