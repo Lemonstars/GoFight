@@ -7,11 +7,15 @@ package model.thing;
  */
 public class ThingPic {
 
-    private static String[] picName = {"tile.png", "wall.png", "door-yellow.png",
-            "door-blue.png", "door-red.png", "step-up.png", "step-down.png"};
+    private static String[] picName = {"tile.png", "wall.png", "door-yellow.png", "door-blue.png", "door-red.png",
+            "step-up.png", "step-down.png", "key-yellow.png", "key-blue.png", "key-red.png", "bat.png", "skeleton.png",
+            "shrek-red.png", "shrek-blue.png", "shrek-black.png", "corpse.png", "gemstone-blue.png", "gemstone-red.png",
+            "blood.png"};
 
-    private static ThingType[] thingType = {ThingType.TILE, ThingType.WALL, ThingType.DOOR_YELLOW,
-    ThingType.DOOR_BLUE, ThingType.DOOR_RED, ThingType.STEP_UP, ThingType.STEP_DOWN};
+    private static ThingType[] thingType = {ThingType.TILE, ThingType.WALL, ThingType.DOOR_YELLOW, ThingType.DOOR_BLUE,
+            ThingType.DOOR_RED, ThingType.STEP_UP, ThingType.STEP_DOWN, ThingType.KEY_YELLOW, ThingType.KEY_BLUE,
+            ThingType.KEY_RED, ThingType.BAT, ThingType.SKELETON, ThingType.SHREK_RED, ThingType.SHREK_BLUE,
+            ThingType.SHREK_BLACK, ThingType.CORPSE, ThingType.GEMSTONE_BLUE, ThingType.GEMSTONE_RED, ThingType.BLOOD};
 
     public static String convertType2PicName(ThingType type){
         for(int i=0; i<thingType.length; i++){
