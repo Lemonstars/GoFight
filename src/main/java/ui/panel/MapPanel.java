@@ -1,22 +1,30 @@
-package ui;
+package ui.panel;
 
 import model.floor.Floor;
-import model.floor.FloorFactory;
+import model.hero.AbstractHero;
 import model.thing.ThingPic;
 import model.thing.ThingType;
 import util.ImageUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/18
  */
-public class MapPanel extends JPanel{
+public class MapPanel extends JPanel implements Observer{
 
-    public MapPanel() {
+    private int size = 40;
+    private AbstractHero hero;
+
+    public MapPanel(AbstractHero hero) {
+        this.hero = hero;
+        this.hero.addObserver(this);
+
         this.setBounds(0, 0, 800, 400);
         this.setLayout(null);
         this.setBackground(new Color(106, 106, 106));
@@ -25,13 +33,17 @@ public class MapPanel extends JPanel{
     }
 
     @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("MapPanel: I know that I should update");
+        updateUI();
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int size = 40;
 
-        FloorFactory floorFactory = new FloorFactory();
-        Floor firstFloor = floorFactory.createFloor(4);
-        ThingType[][] distribution = firstFloor.getFloorDistribution();
+        Floor floor = hero.getFloor();
+        ThingType[][] distribution = floor.getFloorDistribution();
 
         String fileUrl;
         Image image;

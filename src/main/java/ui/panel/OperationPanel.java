@@ -1,7 +1,11 @@
-package ui;
+package ui.panel;
+
+import model.hero.AbstractHero;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @author 刘兴
@@ -10,19 +14,24 @@ import java.awt.*;
  */
 public class OperationPanel extends JPanel{
 
+    private AbstractHero hero;
+
     private JButton[] directionButton = new JButton[4];
     private String[] directionStr = {"上", "下", "左", "右"};
 
     private JButton[] settingButton = new JButton[3];
     private String[] settingStr = {"保存进度", "退出游戏", "重新开始"};
 
-    public OperationPanel() {
+    public OperationPanel(AbstractHero hero) {
+        this.hero = hero;
+
         this.setBounds(800, 200, 200, 400);
         this.setLayout(null);
         this.setBackground(new Color(91, 213, 255));
 
         configDirectionButton();
         configSettingButton();
+        configListener();
 
         this.setVisible(true);
     }
@@ -56,5 +65,13 @@ public class OperationPanel extends JPanel{
 
     }
 
+    private void configListener(){
+
+        directionButton[0].addActionListener(e -> hero.goUp());
+        directionButton[1].addActionListener(e -> hero.goDown());
+        directionButton[2].addActionListener(e -> hero.goLeft());
+        directionButton[3].addActionListener(e -> hero.goRight());
+
+    }
 
 }

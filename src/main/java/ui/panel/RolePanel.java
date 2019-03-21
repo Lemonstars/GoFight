@@ -1,21 +1,30 @@
-package ui;
+package ui.panel;
+
+import model.hero.AbstractHero;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/18
  */
-public class RolePanel extends JPanel{
+public class RolePanel extends JPanel implements Observer{
+
+    private AbstractHero hero;
 
     private JLabel[] roleLabel = new JLabel[6];
     private JLabel[] valueLabel = new JLabel[6];
     private String[] roleStr = {"角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
     private String[] valueStr = {"法师", "100", "10", "10", "10", "10"};
 
-    public RolePanel() {
+    public RolePanel(AbstractHero hero) {
+        this.hero = hero;
+        this.hero.addObserver(this);
+
         this.setBounds(800, 0, 200, 200);
         this.setLayout(null);
         this.setBackground(new Color(186, 231, 255));
@@ -23,6 +32,11 @@ public class RolePanel extends JPanel{
         configHint();
 
         this.setVisible(true);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("RolePanel: I know that I should update");
     }
 
     private void configHint(){

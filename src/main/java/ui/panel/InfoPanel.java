@@ -1,14 +1,20 @@
-package ui;
+package ui.panel;
+
+import model.hero.AbstractHero;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/18
  */
-public class InfoPanel extends JPanel{
+public class InfoPanel extends JPanel implements Observer{
+
+    private AbstractHero hero;
 
     private JLabel[] titleLabel = new JLabel[3];
     private String[] titleStr = { "武器", "技能", "装备"};
@@ -19,7 +25,10 @@ public class InfoPanel extends JPanel{
     private JLabel[] keyValueLabel = new JLabel[3];
     private int[] keyValue = {1, 1, 1};
 
-    public InfoPanel() {
+    public InfoPanel(AbstractHero hero) {
+        this.hero = hero;
+        this.hero.addObserver(this);
+
         this.setBounds(0, 400, 800, 200);
         this.setLayout(null);
         this.setBackground(new Color(230, 247, 255));
@@ -28,6 +37,11 @@ public class InfoPanel extends JPanel{
         configKeyLabel();
 
         this.setVisible(true);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("InfoPanel: I know that I should update");
     }
 
     private void configTitleLabel(){

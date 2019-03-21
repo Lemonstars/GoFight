@@ -1,5 +1,12 @@
 package ui;
 
+import model.hero.AbstractHero;
+import model.hero.AttackerHero;
+import ui.panel.InfoPanel;
+import ui.panel.MapPanel;
+import ui.panel.OperationPanel;
+import ui.panel.RolePanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -24,10 +31,13 @@ public class MainUi {
         jFrame.setBounds(x, y, width, height);
         jFrame.setResizable(false);
 
-        addPanel(jFrame, new MapPanel());
-        addPanel(jFrame, new RolePanel());
-        addPanel(jFrame, new InfoPanel());
-        addPanel(jFrame, new OperationPanel());
+        // todo 如何选择角色类型
+        AbstractHero hero = new AttackerHero();
+
+        addPanel(jFrame, new MapPanel(hero));
+        addPanel(jFrame, new RolePanel(hero));
+        addPanel(jFrame, new InfoPanel(hero));
+        addPanel(jFrame, new OperationPanel(hero));
 
         jFrame.setVisible(true);
     }
