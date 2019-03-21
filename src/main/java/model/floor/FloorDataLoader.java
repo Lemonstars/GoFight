@@ -13,7 +13,7 @@ import java.io.*;
  */
 public class FloorDataLoader {
 
-    public ThingType[][] loadFloorData(String floorFileName){
+    public static ThingType[][] loadFloorData(String floorFileName){
         ThingType[][] floor = new ThingType[MapConstant.ROW][MapConstant.COL];
         for(int i=0; i<MapConstant.ROW; i++){
             for(int j=0; j<MapConstant.COL; j++){
@@ -21,8 +21,7 @@ public class FloorDataLoader {
             }
         }
 
-        Class clazz = getClass();
-        ClassLoader classLoader = clazz.getClassLoader();
+        ClassLoader classLoader = FloorDataLoader.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(floorFileName);
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));

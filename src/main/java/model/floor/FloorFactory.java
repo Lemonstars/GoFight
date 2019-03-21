@@ -10,11 +10,13 @@ public class FloorFactory {
     public Floor createFloor(int floor){
         switch (floor){
             case 1:
-                return new FirstFloor();
+                return new Floor1();
             case 2:
-                return new SecondFoor();
+                return new Floor2();
             case 3:
-                return new ThirdFloor();
+                return new Floor3();
+            case 4:
+                return new Floor4();
                 default:
                     throw new IllegalArgumentException("未定义的楼层信息");
         }

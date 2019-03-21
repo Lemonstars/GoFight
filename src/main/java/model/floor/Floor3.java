@@ -7,11 +7,10 @@ import model.thing.ThingType;
  * @version 1.0
  * @date 2019/03/20
  */
-public class ThirdFloor implements Floor{
+public class Floor3 implements Floor{
 
     @Override
     public ThingType[][] getFloorDistribution() {
-        FloorDataLoader floorDataLoader = new FloorDataLoader();
-        return floorDataLoader.loadFloorData("map/third-floor.txt");
+        return FloorDataLoader.loadFloorData("map/floor3.txt");
     }
 }
