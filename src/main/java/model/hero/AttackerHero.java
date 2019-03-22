@@ -12,6 +12,7 @@ public class AttackerHero extends AbstractHero{
         this.attack = 12;
         this.defence = 10;
         this.blood = 100;
+        this.description = "攻击者";
     }
 
 }

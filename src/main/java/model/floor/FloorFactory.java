@@ -8,6 +8,7 @@ package model.floor;
 public class FloorFactory {
 
     public Floor createFloor(int floor){
+        // todo 简单工厂
         switch (floor){
             case 1:
                 return new Floor1("map/floor1.txt");

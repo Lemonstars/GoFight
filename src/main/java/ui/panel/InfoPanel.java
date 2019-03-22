@@ -1,5 +1,6 @@
 package ui.panel;
 
+import data.NotificationContent;
 import model.hero.AbstractHero;
 
 import javax.swing.*;
@@ -19,11 +20,11 @@ public class InfoPanel extends JPanel implements Observer{
     private JLabel[] titleLabel = new JLabel[3];
     private String[] titleStr = { "武器", "技能", "装备"};
 
-    private JLabel[] keyNameLabel = new JLabel[3];
-    private String[] keyName = {"黄钥匙", "蓝钥匙", "红钥匙"};
+    private JLabel[] keyHintLabel = new JLabel[3];
+    private String[] keyHintStr = {"黄钥匙", "蓝钥匙", "红钥匙"};
 
-    private JLabel[] keyValueLabel = new JLabel[3];
-    private int[] keyValue = {1, 1, 1};
+    private JLabel[] keyContentLabel = new JLabel[3];
+    private int[] keyContentStr = new int[3];
 
     public InfoPanel(AbstractHero hero) {
         this.hero = hero;
@@ -34,40 +35,37 @@ public class InfoPanel extends JPanel implements Observer{
         this.setBackground(new Color(230, 247, 255));
 
         configTitleLabel();
-        configKeyLabel();
+        configKeyHintLabel();
+        configKeyContent();
 
         this.setVisible(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("InfoPanel: I know that I should update");
+        NotificationContent content = (NotificationContent)arg;
+        if(content.isKeyChanged()){
+            configKeyContent();
+        }
     }
 
     private void configTitleLabel(){
-        for(int i = 0; i< titleLabel.length; i++){
-            titleLabel[i] = new JLabel();
-            titleLabel[i].setText(titleStr[i]);
-        }
-
         int size = 50;
         int y = 2;
-        titleLabel[0].setBounds(30, y, size, size);
-        titleLabel[1].setBounds(330, y, size, size);
-        titleLabel[2].setBounds(630, y, size, size);
-
-        for (JLabel jLabel: titleLabel){
-            this.add(jLabel);
+        for(int i = 0; i < titleLabel.length; i++){
+            titleLabel[i] = new JLabel();
+            titleLabel[i].setText(titleStr[i]);
+            titleLabel[i].setBounds(30 + 300 * i, y, size, size);
+            this.add(titleLabel[i]);
         }
     }
 
-    private void configKeyLabel(){
-        for(int i = 0; i< keyNameLabel.length; i++){
-            keyNameLabel[i] = new JLabel();
-            keyNameLabel[i].setText(keyName[i]);
 
-            keyValueLabel[i] = new JLabel();
-            keyValueLabel[i].setText(String.valueOf(keyValue[i]));
+    private void configKeyHintLabel(){
+        for(int i = 0; i < keyHintLabel.length; i++){
+            keyHintLabel[i] = new JLabel();
+            keyHintLabel[i].setText(keyHintStr[i]);
+            keyContentLabel[i] = new JLabel();
 
             int keyX = 630;
             int valueX = 730;
@@ -75,11 +73,25 @@ public class InfoPanel extends JPanel implements Observer{
             int width = 50;
             int height = 30;
 
-            keyNameLabel[i].setBounds(keyX, y, width, height);
-            keyValueLabel[i].setBounds(valueX, y, width, height);
-            this.add(keyNameLabel[i]);
-            this.add(keyValueLabel[i]);
+            keyHintLabel[i].setBounds(keyX, y, width, height);
+            keyContentLabel[i].setBounds(valueX, y, width, height);
+            this.add(keyHintLabel[i]);
+            this.add(keyContentLabel[i]);
         }
     }
+
+    private void configKeyContent(){
+        keyContentStr[0] = hero.getKey_yellow();
+        keyContentStr[1] = hero.getKey_blue();
+        keyContentStr[2] = hero.getKey_red();
+
+        for(int i = 0; i < keyContentLabel.length; i++){
+            keyContentLabel[i].setText(String.valueOf(keyContentStr[i]));
+            keyContentLabel[i].updateUI();
+        }
+    }
+
+
+
 
 }

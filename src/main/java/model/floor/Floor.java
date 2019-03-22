@@ -29,6 +29,10 @@ public abstract class Floor {
         distribution[x][y] = thingType;
     }
 
+    public ThingType getThingType(int x, int y){
+        return distribution[x][y];
+    }
+
     /**
      * 获取起始点的x坐标
      * @return

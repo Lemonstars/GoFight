@@ -19,7 +19,7 @@ public class RolePanel extends JPanel implements Observer{
     private JLabel[] roleLabel = new JLabel[6];
     private JLabel[] valueLabel = new JLabel[6];
     private String[] roleStr = {"角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
-    private String[] valueStr = {"法师", "100", "10", "10", "10", "10"};
+    private String[] valueStr;
 
     public RolePanel(AbstractHero hero) {
         this.hero = hero;
@@ -29,7 +29,8 @@ public class RolePanel extends JPanel implements Observer{
         this.setLayout(null);
         this.setBackground(new Color(186, 231, 255));
 
-        configHint();
+        configHintLabel();
+        configHintContent();
 
         this.setVisible(true);
     }
@@ -39,13 +40,12 @@ public class RolePanel extends JPanel implements Observer{
         System.out.println("RolePanel: I know that I should update");
     }
 
-    private void configHint(){
+    private void configHintLabel(){
         for(int i = 0; i< roleLabel.length; i++){
             roleLabel[i] = new JLabel();
             roleLabel[i].setText(roleStr[i]);
 
             valueLabel[i] = new JLabel();
-            valueLabel[i].setText(valueStr[i]);
 
             int roleX = 30;
             int valueX = 110;
@@ -58,8 +58,23 @@ public class RolePanel extends JPanel implements Observer{
             this.add(roleLabel[i]);
             this.add(valueLabel[i]);
         }
+    }
+
+    private void configHintContent(){
+        valueStr = new String[roleStr.length];
+        valueStr[0] = hero.getDescription();
+        valueStr[1] = String.valueOf(hero.getMoney());
+        valueStr[2] = String.valueOf(hero.getExperience());
+        valueStr[3] = String.valueOf(hero.getBlood());
+        valueStr[4] = String.valueOf(hero.getAttack());
+        valueStr[5] = String.valueOf(hero.getDefence());
+
+        for(int i=0; i<valueLabel.length; i++){
+            valueLabel[i].setText(valueStr[i]);
+        }
 
     }
+
 
 
 }
