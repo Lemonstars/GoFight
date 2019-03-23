@@ -1,9 +1,8 @@
 package ui.panel;
 
 import model.floor.Floor;
-import model.hero.AbstractHero;
-import model.thing.ThingPic;
-import model.thing.ThingType;
+import model.thing.IThing;
+import model.thing.hero.AbstractHero;
 import util.ImageUtil;
 
 import javax.swing.*;
@@ -43,13 +42,13 @@ public class MapPanel extends JPanel implements Observer{
         super.paintComponent(g);
 
         Floor floor = hero.getFloor();
-        ThingType[][] distribution = floor.getFloorDistribution();
+        IThing[][] distribution = floor.getFloorDistribution();
 
         String fileUrl;
         Image image;
         for(int i=0; i<distribution.length; i++){
             for(int j=0; j<distribution[0].length; j++){
-                fileUrl = "pic/" + ThingPic.convertType2PicName(distribution[i][j]);
+                fileUrl = "pic/" + distribution[i][j].getPicName();
                 image = ImageUtil.getImage(fileUrl);
                 g.drawImage(image, size * j, size * i, size, size,null);
             }

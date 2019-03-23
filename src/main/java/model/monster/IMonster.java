@@ -1,11 +1,13 @@
 package model.monster;
 
+import model.thing.IThing;
+
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/21
  */
-public interface IMonster {
+public interface IMonster extends IThing{
 
     /**
      * 获取攻击值

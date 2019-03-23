@@ -1,11 +1,9 @@
 package ui.panel;
 
-import model.hero.AbstractHero;
+import model.thing.hero.AbstractHero;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @author 刘兴

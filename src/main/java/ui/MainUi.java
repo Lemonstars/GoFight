@@ -1,7 +1,7 @@
 package ui;
 
-import model.hero.AbstractHero;
-import model.hero.AttackerHero;
+import model.thing.hero.AbstractHero;
+import model.thing.hero.AttackerHero;
 import ui.panel.InfoPanel;
 import ui.panel.MapPanel;
 import ui.panel.OperationPanel;

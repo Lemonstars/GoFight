@@ -1,7 +1,7 @@
 package ui.panel;
 
 import data.NotificationContent;
-import model.hero.AbstractHero;
+import model.thing.hero.AbstractHero;
 
 import javax.swing.*;
 import java.awt.*;
@@ -81,9 +81,9 @@ public class InfoPanel extends JPanel implements Observer{
     }
 
     private void configKeyContent(){
-        keyContentStr[0] = hero.getKey_yellow();
-        keyContentStr[1] = hero.getKey_blue();
-        keyContentStr[2] = hero.getKey_red();
+        keyContentStr[0] = hero.getKeyYellow();
+        keyContentStr[1] = hero.getKeyBlue();
+        keyContentStr[2] = hero.getKeyRed();
 
         for(int i = 0; i < keyContentLabel.length; i++){
             keyContentLabel[i].setText(String.valueOf(keyContentStr[i]));

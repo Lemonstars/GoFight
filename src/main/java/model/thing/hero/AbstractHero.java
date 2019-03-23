@@ -1,9 +1,10 @@
-package model.hero;
+package model.thing.hero;
 
-import constant.MapConstant;
 import data.NotificationContent;
 import model.floor.Floor;
 import model.floor.FloorFactory;
+import model.thing.IThing;
+import model.thing.ThingFactory;
 import model.thing.ThingType;
 
 import java.util.Observable;
@@ -21,9 +22,9 @@ public abstract class AbstractHero extends Observable {
 
     private int money;
     private int experience;
-    private int key_yellow;
-    private int key_blue;
-    private int key_red;
+    private int keyYellow;
+    private int keyBlue;
+    private int keyRed;
 
     protected int attack;
     protected int defence;
@@ -48,9 +49,9 @@ public abstract class AbstractHero extends Observable {
         this.money = 0;
         this.experience = 0;
 
-        this.key_yellow = 3;
-        this.key_blue = 2;
-        this.key_red = 1;
+        this.keyYellow = 3;
+        this.keyBlue = 2;
+        this.keyRed = 1;
     }
 
     private void initFloor(){
@@ -88,12 +89,14 @@ public abstract class AbstractHero extends Observable {
         }
 
         // go beyond the range of the map
-        if(newX < 0 || newX >= MapConstant.ROW || newY < 0 || newY >= MapConstant.COL){
+        boolean isValid = floor.isValidLocation(newX, newY);
+        if(!isValid){
             return;
         }
 
         // if the new location is the wall, the hero does not move
-        ThingType thingType = floor.getThingType(newX, newY);
+        IThing thing = floor.getThingType(newX, newY);
+        ThingType thingType = thing.getThingType();
         if(thingType == ThingType.WALL){
             return;
         }
@@ -102,15 +105,15 @@ public abstract class AbstractHero extends Observable {
 
         // if the new location is a key
         if(thingType == ThingType.KEY_YELLOW){
-            this.key_yellow += 1;
+            this.keyYellow += 1;
             content.setKeyChanged(true);
         }
         if(thingType == ThingType.KEY_BLUE){
-            this.key_blue += 1;
+            this.keyBlue += 1;
             content.setKeyChanged(true);
         }
         if(thingType == ThingType.KEY_RED){
-            this.key_red += 1;
+            this.keyRed += 1;
             content.setKeyChanged(true);
         }
 
@@ -150,16 +153,16 @@ public abstract class AbstractHero extends Observable {
         return description;
     }
 
-    public int getKey_yellow() {
-        return key_yellow;
+    public int getKeyYellow() {
+        return keyYellow;
     }
 
-    public int getKey_blue() {
-        return key_blue;
+    public int getKeyBlue() {
+        return keyBlue;
     }
 
-    public int getKey_red() {
-        return key_red;
+    public int getKeyRed() {
+        return keyRed;
     }
 
     public Floor getFloor() {

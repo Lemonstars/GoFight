@@ -1,5 +1,8 @@
 package model.floor;
 
+import constant.MapConstant;
+import model.thing.IThing;
+import model.thing.ThingFactory;
 import model.thing.ThingType;
 
 /**
@@ -10,14 +13,14 @@ import model.thing.ThingType;
 public abstract class Floor {
 
     private String floorFile;
-    private ThingType[][] distribution;
+    private IThing[][] distribution;
 
     public Floor(String floorFile) {
         this.floorFile = floorFile;
         getFloorDistribution();
     }
 
-    public ThingType[][] getFloorDistribution() {
+    public IThing[][] getFloorDistribution() {
         if(null == distribution){
             distribution = FloorDataLoader.loadFloorData(floorFile);
         }
@@ -25,11 +28,16 @@ public abstract class Floor {
         return distribution;
     }
 
-    public void locateThing(int x, int y, ThingType thingType){
-        distribution[x][y] = thingType;
+    public boolean isValidLocation(int x, int y){
+        return (x >= 0 && x < MapConstant.ROW) &&
+                (y >= 0 && y < MapConstant.COL);
     }
 
-    public ThingType getThingType(int x, int y){
+    public void locateThing(int x, int y, ThingType thingType){
+        distribution[x][y] = ThingFactory.create(thingType);
+    }
+
+    public IThing getThingType(int x, int y){
         return distribution[x][y];
     }
 

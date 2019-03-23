@@ -1,11 +1,28 @@
 package model.monster;
 
+import model.thing.ThingType;
+
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/21
  */
 public class Bat implements IMonster {
+
+    @Override
+    public String getPicName() {
+        return "bat.png";
+    }
+
+    @Override
+    public String getDescription() {
+        return "bat";
+    }
+
+    @Override
+    public ThingType getThingType() {
+        return ThingType.BAT;
+    }
 
     @Override
     public int getAttackNum() {

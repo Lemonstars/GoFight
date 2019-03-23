@@ -1,10 +1,13 @@
 package model.floor;
 
 import constant.MapConstant;
-import model.thing.ThingPic;
-import model.thing.ThingType;
+import model.thing.IThing;
+import model.thing.ThingFactory;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * @author 刘兴
@@ -13,11 +16,11 @@ import java.io.*;
  */
 public class FloorDataLoader {
 
-    public static ThingType[][] loadFloorData(String floorFileName){
-        ThingType[][] floor = new ThingType[MapConstant.ROW][MapConstant.COL];
+    public static IThing[][] loadFloorData(String floorFileName){
+        IThing[][] floor = new IThing[MapConstant.ROW][MapConstant.COL];
         for(int i=0; i<MapConstant.ROW; i++){
             for(int j=0; j<MapConstant.COL; j++){
-                floor[i][j] = ThingType.TILE;
+                floor[i][j] = ThingFactory.create(0);
             }
         }
 
@@ -32,8 +35,7 @@ public class FloorDataLoader {
                 int x = Integer.valueOf(lineStr[0]);
                 int y = Integer.valueOf(lineStr[1]);
                 int type = Integer.valueOf(lineStr[2]);
-                ThingType thingType = ThingPic.convertIdx2Type(type);
-                floor[x][y] = thingType;
+                floor[x][y] = ThingFactory.create(type);
             }
         }catch (IOException e){
             e.printStackTrace();
