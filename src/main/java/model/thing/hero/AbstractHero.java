@@ -4,7 +4,6 @@ import data.NotificationContent;
 import model.floor.Floor;
 import model.floor.FloorFactory;
 import model.thing.IThing;
-import model.thing.ThingFactory;
 import model.thing.ThingType;
 
 import java.util.Observable;
@@ -14,9 +13,9 @@ import java.util.Observable;
  * @version 1.0
  * @date 2019/03/21
  */
-public abstract class AbstractHero extends Observable {
+public abstract class AbstractHero extends Observable implements IThing {
 
-    private FloorFactory floorFactory;
+    private Floor floor;
     private int currentX;
     private int currentY;
 
@@ -31,12 +30,10 @@ public abstract class AbstractHero extends Observable {
     protected int blood;
     protected String description;
 
-    private Floor floor;
-
-    public AbstractHero() {
+    public AbstractHero(FloorFactory floorFactory) {
         // todo 模版方法
-        initCommon();
-        initFloor();
+        initFloor(floorFactory);
+        initBasicInfo();
         initRole();
     }
 
@@ -45,7 +42,13 @@ public abstract class AbstractHero extends Observable {
      */
     abstract void initRole();
 
-    private void initCommon(){
+    private void initFloor(FloorFactory floorFactory){
+        floor = floorFactory.createFloor(1);
+        currentX = floor.getStartX();
+        currentY = floor.getStartY();
+    }
+
+    private void initBasicInfo(){
         this.money = 0;
         this.experience = 0;
 
@@ -54,12 +57,7 @@ public abstract class AbstractHero extends Observable {
         this.keyRed = 1;
     }
 
-    private void initFloor(){
-        floorFactory = new FloorFactory();
-        floor = floorFactory.createFloor(1);
-
-        currentX = floor.getStartX();
-        currentY = floor.getStartY();
+    public void initLocation(){
         floor.locateThing(currentX, currentY, ThingType.HERO);
     }
 
@@ -119,15 +117,34 @@ public abstract class AbstractHero extends Observable {
         }
 
         // todo 判断是否为怪物
-
-        floor.locateThing(currentX, currentY, ThingType.TILE);
-        currentX = newX;
-        currentY = newY;
-        floor.locateThing(currentX, currentY, ThingType.HERO);
+        moveTo(newX, newY);
 
         // todo 观察者模式
         setChanged();
         notifyObservers(content);
+    }
+
+    private void moveTo(int newX, int newY){
+        floor.locateThing(currentX, currentY, ThingType.TILE);
+        currentX = newX;
+        currentY = newY;
+        floor.locateThing(currentX, currentY, ThingType.HERO);
+    }
+
+
+    @Override
+    public String getPicName() {
+        return "hero.png";
+    }
+
+    @Override
+    public ThingType getThingType() {
+        return ThingType.HERO;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     public int getMoney() {
@@ -148,10 +165,6 @@ public abstract class AbstractHero extends Observable {
 
     public int getBlood() {
         return blood;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public int getKeyYellow() {

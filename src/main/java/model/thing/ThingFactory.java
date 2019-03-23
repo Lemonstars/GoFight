@@ -1,6 +1,10 @@
 package model.thing;
 
+import model.floor.FloorFactory;
 import model.monster.*;
+import model.thing.hero.AbstractHero;
+import model.thing.hero.AttackerHero;
+import model.thing.hero.DefencerHero;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +17,18 @@ import java.util.Map;
 public class ThingFactory {
 
     private static final Map<Integer, IThing> THING_MAP = new HashMap<>(32);
+
+    public static AbstractHero createAttacker(FloorFactory floorFactory){
+        AbstractHero hero = new AttackerHero(floorFactory);
+        THING_MAP.put(ThingType.HERO.ordinal(), hero);
+        return hero;
+    }
+
+    public static AbstractHero createDefencer(FloorFactory floorFactory){
+        AbstractHero hero = new DefencerHero(floorFactory);
+        THING_MAP.put(ThingType.HERO.ordinal(), hero);
+        return hero;
+    }
 
     public static IThing create(ThingType thingType){
         return create(thingType.ordinal());
@@ -80,9 +96,6 @@ public class ThingFactory {
                     break;
                 case 18:
                     thing = new BloodBottleThing();
-                    break;
-                case 19:
-                    thing = new HeroThing();
                     break;
                     default:
                         throw new IllegalArgumentException("未识别地图物件类型:" + type);

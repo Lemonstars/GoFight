@@ -1,7 +1,8 @@
 package ui;
 
+import model.floor.FloorFactory;
+import model.thing.ThingFactory;
 import model.thing.hero.AbstractHero;
-import model.thing.hero.AttackerHero;
 import ui.panel.InfoPanel;
 import ui.panel.MapPanel;
 import ui.panel.OperationPanel;
@@ -32,7 +33,8 @@ public class MainUi {
         jFrame.setResizable(false);
 
         // todo 如何选择角色类型
-        AbstractHero hero = new AttackerHero();
+        AbstractHero hero = ThingFactory.createAttacker(new FloorFactory());
+        hero.initLocation();
 
         addPanel(jFrame, new MapPanel(hero));
         addPanel(jFrame, new RolePanel(hero));
