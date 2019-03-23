@@ -1,9 +1,13 @@
 package ui.panel;
 
+import constant.MapConstant;
+import data.NotificationContent;
 import model.floor.Floor;
 import model.thing.IThing;
+import model.thing.ThingFactory;
+import model.thing.ThingType;
 import model.thing.hero.AbstractHero;
-import util.ImageUtil;
+import util.ImageIconUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,42 +21,48 @@ import java.util.Observer;
  */
 public class MapPanel extends JPanel implements Observer{
 
-    private int size = 40;
     private AbstractHero hero;
+    private JLabel[][] mapLabelArray;
 
     public MapPanel(AbstractHero hero) {
         this.hero = hero;
         this.hero.addObserver(this);
-
         this.setBounds(0, 0, 800, 400);
-        this.setLayout(null);
-        this.setBackground(new Color(106, 106, 106));
 
+        GridLayout groupLayout = new GridLayout(MapConstant.ROW, MapConstant.COL);
+        this.setLayout(groupLayout);
+
+        initMapLabel();
         this.setVisible(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("MapPanel: I know that I should update");
-        updateUI();
+        NotificationContent content = (NotificationContent)arg;
+        updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
+    private void initMapLabel(){
         Floor floor = hero.getFloor();
         IThing[][] distribution = floor.getFloorDistribution();
-
         String fileUrl;
-        Image image;
-        for(int i=0; i<distribution.length; i++){
-            for(int j=0; j<distribution[0].length; j++){
-                fileUrl = "pic/" + distribution[i][j].getPicName();
-                image = ImageUtil.getImage(fileUrl);
-                g.drawImage(image, size * j, size * i, size, size,null);
+
+        mapLabelArray = new JLabel[MapConstant.ROW][MapConstant.COL];
+        for(int i = 0; i< mapLabelArray.length; i ++){
+            for(int j = 0; j< mapLabelArray[0].length; j++){
+                fileUrl = distribution[i][j].getPicName();
+                mapLabelArray[i][j] = new JLabel(ImageIconUtil.create(fileUrl));
+                this.add(mapLabelArray[i][j]);
             }
         }
     }
+
+    private void updateLabel(int oldX, int oldY, int newX, int newY){
+        IThing hero = ThingFactory.create(ThingType.HERO);
+        IThing tile = ThingFactory.create(ThingType.TILE);
+        mapLabelArray[newX][newY].setIcon(ImageIconUtil.create(hero.getPicName()));
+        mapLabelArray[oldX][oldY].setIcon(ImageIconUtil.create(tile.getPicName()));
+    }
+
 
 }

@@ -101,7 +101,8 @@ public abstract class AbstractHero extends Observable {
             return;
         }
 
-        NotificationContent content = new NotificationContent();
+        NotificationContent content = new NotificationContent(currentX, currentY, newX, newY);
+
 
         // if the new location is a key
         if(thingType == ThingType.KEY_YELLOW){
