@@ -15,9 +15,9 @@ public class AttackerHero extends AbstractHero{
 
     @Override
     void initRole() {
-        this.attack = 12;
+        this.attack = 15;
         this.defence = 10;
-        this.blood = 100;
+        this.blood = 200;
         this.description = "攻击者";
     }
 
