@@ -1,11 +1,19 @@
-package model.thing;
+package model.thing.key;
+
+import model.thing.ThingType;
+import model.thing.hero.AbstractHero;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/23
  */
-public class YellowKeyThing implements IThing {
+public class YellowKeyThing implements IKey {
+
+    @Override
+    public void increaseKey(AbstractHero hero) {
+        hero.increaseYellowKey();
+    }
 
     @Override
     public String getPicName() {

@@ -1,10 +1,21 @@
 package model.thing;
 
 import model.floor.FloorFactory;
-import model.monster.*;
+import model.thing.basic.TileThing;
+import model.thing.basic.WallThing;
+import model.thing.monster.*;
+import model.thing.door.BlueDoorThing;
+import model.thing.door.RedDoorThing;
+import model.thing.door.YellowDoorThing;
 import model.thing.hero.AbstractHero;
 import model.thing.hero.AttackerHero;
 import model.thing.hero.DefencerHero;
+import model.thing.key.BlueKeyThing;
+import model.thing.key.RedKeyThing;
+import model.thing.key.YellowKeyThing;
+import model.thing.self.BloodBottleThing;
+import model.thing.self.BlueGemstoneThing;
+import model.thing.self.RedGemstoneThing;
 
 import java.util.HashMap;
 import java.util.Map;

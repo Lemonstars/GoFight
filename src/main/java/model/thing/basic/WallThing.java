@@ -1,4 +1,7 @@
-package model.thing;
+package model.thing.basic;
+
+import model.thing.IThing;
+import model.thing.ThingType;
 
 /**
  * @author 刘兴

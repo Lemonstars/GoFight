@@ -19,6 +19,8 @@ public abstract class AbstractHero extends Observable implements IThing {
     private int currentX;
     private int currentY;
 
+    private ConcreteMeetMediator meetMediator;
+
     private int money;
     private int experience;
     private int keyYellow;
@@ -35,12 +37,17 @@ public abstract class AbstractHero extends Observable implements IThing {
         initFloor(floorFactory);
         initBasicInfo();
         initRole();
+        initMediator();
     }
 
     /**
      * delay to initialize according to different roles
      */
     abstract void initRole();
+
+    private void initMediator(){
+        meetMediator = new ConcreteMeetMediator();
+    }
 
     private void initFloor(FloorFactory floorFactory){
         floor = floorFactory.createFloor(1);
@@ -78,59 +85,26 @@ public abstract class AbstractHero extends Observable implements IThing {
     }
 
     private void goLocation(boolean isX, boolean isAdd){
-        int newX = currentX;
-        int newY = currentY;
-        if(isX){
-            newX = currentX + (isAdd ? 1 : -1);
-        }else {
-            newY = currentY + (isAdd ? 1 : -1);
-        }
-
-        // go beyond the range of the map
-        boolean isValid = floor.isValidLocation(newX, newY);
-        if(!isValid){
-            return;
-        }
+        int newX = isX ? currentX + (isAdd ? 1 : -1): currentX;
+        int newY = isX ? currentY: currentY + (isAdd ? 1 : -1);
 
         // if the new location is the wall, the hero does not move
         IThing thing = floor.getThingType(newX, newY);
-        ThingType thingType = thing.getThingType();
-        if(thingType == ThingType.WALL){
-            return;
-        }
+        meetMediator.meet(this, thing, newX, newY);
+    }
 
-        NotificationContent content = new NotificationContent(currentX, currentY, newX, newY);
-
-
-        // if the new location is a key
-        if(thingType == ThingType.KEY_YELLOW){
-            this.keyYellow += 1;
-            content.setKeyChanged(true);
-        }
-        if(thingType == ThingType.KEY_BLUE){
-            this.keyBlue += 1;
-            content.setKeyChanged(true);
-        }
-        if(thingType == ThingType.KEY_RED){
-            this.keyRed += 1;
-            content.setKeyChanged(true);
-        }
-
-        // todo 判断是否为怪物
-        moveTo(newX, newY);
-
+    public void notifyObserverChanged(NotificationContent content){
         // todo 观察者模式
         setChanged();
         notifyObservers(content);
     }
 
-    private void moveTo(int newX, int newY){
+    public void moveTo(int newX, int newY){
         floor.locateThing(currentX, currentY, ThingType.TILE);
         currentX = newX;
         currentY = newY;
         floor.locateThing(currentX, currentY, ThingType.HERO);
     }
-
 
     @Override
     public String getPicName() {
@@ -145,6 +119,62 @@ public abstract class AbstractHero extends Observable implements IThing {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    public void setBlood(int blood) {
+        this.blood = blood;
+    }
+
+    public void increaseMoney(int num) {
+        this.money += num;
+    }
+
+    public void increaseExperience(int num) {
+        this.experience += num;
+    }
+
+    public void increaseAttack(int num){
+        this.attack += num;
+    }
+
+    public void increaseDefence(int num){
+        this.defence -= num;
+    }
+
+    public void increaseBlood(int num){
+        this.blood += num;
+    }
+
+    public void increaseYellowKey(){
+        this.keyYellow++;
+    }
+
+    public void increaseBlueKey(){
+        this.keyBlue++;
+    }
+
+    public void increaseRedKey(){
+        this.keyRed++;
+    }
+
+    public void decreaseYellowKey(){
+        this.keyYellow--;
+    }
+
+    public void decreaseBlueKey(){
+        this.keyBlue--;
+    }
+
+    public void decreaseRedKey(){
+        this.keyRed--;
+    }
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
     }
 
     public int getMoney() {

@@ -1,24 +1,27 @@
-package model.thing;
+package model.thing.basic;
+
+import model.thing.IThing;
+import model.thing.ThingType;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/23
  */
-public class RedGemstoneThing implements IThing {
+public class TileThing implements IThing {
 
     @Override
     public String getPicName() {
-        return "gemstone-red.png";
+        return "tile.png";
     }
 
     @Override
     public String getDescription() {
-        return "red gemstone";
+        return "tile";
     }
 
     @Override
     public ThingType getThingType() {
-        return ThingType.GEMSTONE_RED;
+        return ThingType.TILE;
     }
 }

@@ -1,5 +1,6 @@
 package ui.panel;
 
+import data.NotificationContent;
 import model.thing.hero.AbstractHero;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class RolePanel extends JPanel implements Observer{
     private JLabel[] roleLabel = new JLabel[6];
     private JLabel[] valueLabel = new JLabel[6];
     private String[] roleStr = {"角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
-    private String[] valueStr;
+    private String[] valueStr = new String[roleStr.length];
 
     public RolePanel(AbstractHero hero) {
         this.hero = hero;
@@ -37,7 +38,10 @@ public class RolePanel extends JPanel implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("RolePanel: I know that I should update");
+        NotificationContent content = (NotificationContent)arg;
+        if(content.isRoleChanged()){
+            configHintContent();
+        }
     }
 
     private void configHintLabel(){
@@ -61,7 +65,6 @@ public class RolePanel extends JPanel implements Observer{
     }
 
     private void configHintContent(){
-        valueStr = new String[roleStr.length];
         valueStr[0] = hero.getDescription();
         valueStr[1] = String.valueOf(hero.getMoney());
         valueStr[2] = String.valueOf(hero.getExperience());
@@ -71,6 +74,7 @@ public class RolePanel extends JPanel implements Observer{
 
         for(int i=0; i<valueLabel.length; i++){
             valueLabel[i].setText(valueStr[i]);
+            valueLabel[i].updateUI();
         }
 
     }
