@@ -1,6 +1,7 @@
 package ui.panel;
 
 import model.thing.hero.AbstractHero;
+import model.thing.hero.commond.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +14,8 @@ import java.awt.*;
 public class OperationPanel extends JPanel{
 
     private AbstractHero hero;
+
+    private CommandInvoker commandInvoker;
 
     private JButton[] directionButton = new JButton[4];
     private String[] directionStr = {"上", "下", "左", "右"};
@@ -64,11 +67,23 @@ public class OperationPanel extends JPanel{
     }
 
     private void configListener(){
-
-        directionButton[0].addActionListener(e -> hero.goUp());
-        directionButton[1].addActionListener(e -> hero.goDown());
-        directionButton[2].addActionListener(e -> hero.goLeft());
-        directionButton[3].addActionListener(e -> hero.goRight());
+        commandInvoker = new CommandInvoker();
+        directionButton[0].addActionListener(e -> {
+            commandInvoker.setCommand(new UpCommand(hero));
+            commandInvoker.invoke();
+        });
+        directionButton[1].addActionListener(e -> {
+            commandInvoker.setCommand(new DownCommand(hero));
+            commandInvoker.invoke();
+        });
+        directionButton[2].addActionListener(e -> {
+            commandInvoker.setCommand(new LeftCommand(hero));
+            commandInvoker.invoke();
+        });
+        directionButton[3].addActionListener(e -> {
+            commandInvoker.setCommand(new RightCommand(hero));
+            commandInvoker.invoke();
+        });
 
     }
 

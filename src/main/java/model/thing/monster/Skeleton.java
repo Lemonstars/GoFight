@@ -11,7 +11,7 @@ public class Skeleton extends AbstractMonster {
 
     @Override
     void initBasicInfo() {
-        this.attack = 15;
+        this.attack = 16;
         this.defence = 12;
         this.blood = 150;
         this.money = 3;

@@ -18,10 +18,10 @@ public class RolePanel extends JPanel implements Observer{
 
     private AbstractHero hero;
 
-    private JLabel[] roleLabel = new JLabel[6];
-    private JLabel[] valueLabel = new JLabel[6];
     private String[] roleStr = {"楼层", "角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
     private String[] valueStr = new String[roleStr.length];
+    private JLabel[] roleLabel = new JLabel[roleStr.length];
+    private JLabel[] valueLabel = new JLabel[roleStr.length];
 
     public RolePanel(AbstractHero hero) {
         this.hero = hero;
@@ -54,9 +54,9 @@ public class RolePanel extends JPanel implements Observer{
 
             int roleX = 30;
             int valueX = 110;
-            int y = 5 + 30 * i;
+            int y = 5 + 27 * i;
             int width = 50;
-            int height = 30;
+            int height = 25;
 
             roleLabel[i].setBounds(roleX, y, width, height);
             valueLabel[i].setBounds(valueX, y, width, height);

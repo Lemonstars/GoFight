@@ -11,7 +11,7 @@ public class Bat extends AbstractMonster {
 
     @Override
     void initBasicInfo() {
-        this.attack = 10;
+        this.attack = 11;
         this.defence = 10;
         this.blood = 100;
         this.money = 3;
