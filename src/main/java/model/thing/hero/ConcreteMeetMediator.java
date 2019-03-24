@@ -63,6 +63,7 @@ public class ConcreteMeetMediator implements IMeetMediator{
         }else if(thing instanceof IEquipment){
             hero.equip((IEquipment)thing);
             notificationContent.setEquipmentChanged(true);
+            hero.moveTo(newX, newY);
         }
 
         hero.notifyObserverChanged(notificationContent);
