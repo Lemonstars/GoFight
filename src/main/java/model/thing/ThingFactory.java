@@ -1,5 +1,6 @@
 package model.thing;
 
+import model.floor.Floor;
 import model.floor.FloorFactory;
 import model.thing.basic.TileThing;
 import model.thing.basic.WallThing;
@@ -9,13 +10,15 @@ import model.thing.door.RedDoorThing;
 import model.thing.door.YellowDoorThing;
 import model.thing.hero.AbstractHero;
 import model.thing.hero.AttackerHero;
-import model.thing.hero.DefencerHero;
+import model.thing.hero.DefenderHero;
 import model.thing.key.BlueKeyThing;
 import model.thing.key.RedKeyThing;
 import model.thing.key.YellowKeyThing;
 import model.thing.self.BloodBottleThing;
 import model.thing.self.BlueGemstoneThing;
 import model.thing.self.RedGemstoneThing;
+import model.thing.step.StepDownThing;
+import model.thing.step.StepUpThing;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,14 +32,14 @@ public class ThingFactory {
 
     private static final Map<Integer, IThing> THING_MAP = new HashMap<>(32);
 
-    public static AbstractHero createAttacker(FloorFactory floorFactory){
-        AbstractHero hero = new AttackerHero(floorFactory);
+    public static AbstractHero createAttacker(Floor floor){
+        AbstractHero hero = new AttackerHero(floor);
         THING_MAP.put(ThingType.HERO.ordinal(), hero);
         return hero;
     }
 
-    public static AbstractHero createDefencer(FloorFactory floorFactory){
-        AbstractHero hero = new DefencerHero(floorFactory);
+    public static AbstractHero createDefencer(Floor floor){
+        AbstractHero hero = new DefenderHero(floor);
         THING_MAP.put(ThingType.HERO.ordinal(), hero);
         return hero;
     }

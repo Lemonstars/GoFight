@@ -1,17 +1,17 @@
 package model.thing.hero;
 
 
-import model.floor.FloorFactory;
+import model.floor.Floor;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/21
  */
-public class DefencerHero extends AbstractHero {
+public class DefenderHero extends AbstractHero {
 
-    public DefencerHero(FloorFactory floorFactory) {
-        super(floorFactory);
+    public DefenderHero(Floor floor) {
+        super(floor);
     }
 
     @Override

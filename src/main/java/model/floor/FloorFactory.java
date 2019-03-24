@@ -1,5 +1,8 @@
 package model.floor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author 刘兴
  * @version 1.0
@@ -7,20 +10,32 @@ package model.floor;
  */
 public class FloorFactory {
 
-    public Floor createFloor(int floor){
-        // todo 简单工厂
-        switch (floor){
-            case 1:
-                return new Floor1("map/floor1.txt");
-            case 2:
-                return new Floor2("map/floor2.txt");
-            case 3:
-                return new Floor3("map/floor3.txt");
-            case 4:
-                return new Floor4("map/floor4.txt");
+    private static final Map<Integer, Floor> FLOOR_MAP = new HashMap<>();
+
+    public static Floor createFloor(int floorLevel){
+        // todo 享元工厂
+        Floor floor = FLOOR_MAP.get(floorLevel);
+        if(null == floor){
+            switch (floorLevel){
+                case 1:
+                    floor =  new Floor1("map/floor1.txt");
+                    break;
+                case 2:
+                    floor = new Floor2("map/floor2.txt");
+                    break;
+                case 3:
+                    floor = new Floor3("map/floor3.txt");
+                    break;
+                case 4:
+                    floor = new Floor4("map/floor4.txt");
+                    break;
                 default:
                     throw new IllegalArgumentException("未定义的楼层信息");
+            }
+
+            FLOOR_MAP.put(floorLevel, floor);
         }
+        return floor;
     }
 
 }

@@ -1,6 +1,6 @@
 package model.thing.hero;
 
-import model.floor.FloorFactory;
+import model.floor.Floor;
 
 /**
  * @author 刘兴
@@ -9,8 +9,8 @@ import model.floor.FloorFactory;
  */
 public class AttackerHero extends AbstractHero{
 
-    public AttackerHero(FloorFactory floorFactory) {
-        super(floorFactory);
+    public AttackerHero(Floor floor) {
+        super(floor);
     }
 
     @Override

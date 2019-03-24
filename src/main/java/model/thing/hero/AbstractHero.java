@@ -32,9 +32,9 @@ public abstract class AbstractHero extends Observable implements IThing {
     protected int blood;
     protected String description;
 
-    public AbstractHero(FloorFactory floorFactory) {
+    public AbstractHero(Floor floor) {
         // todo 模版方法
-        initFloor(floorFactory);
+        initFloor(floor);
         initBasicInfo();
         initRole();
         initMediator();
@@ -49,8 +49,8 @@ public abstract class AbstractHero extends Observable implements IThing {
         meetMediator = new ConcreteMeetMediator();
     }
 
-    private void initFloor(FloorFactory floorFactory){
-        floor = floorFactory.createFloor(1);
+    private void initFloor(Floor floor){
+        this.floor = floor;
         currentX = floor.getStartX();
         currentY = floor.getStartY();
     }

@@ -33,7 +33,7 @@ public class MainUi {
         jFrame.setResizable(false);
 
         // todo 如何选择角色类型
-        AbstractHero hero = ThingFactory.createAttacker(new FloorFactory());
+        AbstractHero hero = ThingFactory.createAttacker(FloorFactory.createFloor(1));
         hero.initLocation();
 
         addPanel(jFrame, new MapPanel(hero));
