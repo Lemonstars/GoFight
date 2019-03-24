@@ -12,12 +12,22 @@ public class Floor4 extends Floor{
     }
 
     @Override
-    public int getStartX() {
+    public int getUpX() {
         return 9;
     }
 
     @Override
-    public int getStartY() {
+    public int getUpY() {
         return 18;
+    }
+
+    @Override
+    public int getDownX() {
+        return 0;
+    }
+
+    @Override
+    public int getDownY() {
+        return 0;
     }
 }

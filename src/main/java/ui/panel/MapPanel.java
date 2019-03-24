@@ -21,6 +21,7 @@ import java.util.Observer;
  */
 public class MapPanel extends JPanel implements Observer{
 
+    private int iconSize = 40;
     private AbstractHero hero;
     private JLabel[][] mapLabelArray;
 
@@ -65,7 +66,7 @@ public class MapPanel extends JPanel implements Observer{
         for(int i = 0; i< mapLabelArray.length; i ++){
             for(int j = 0; j< mapLabelArray[0].length; j++){
                 fileUrl = distribution[i][j].getPicName();
-                mapLabelArray[i][j].setIcon(ImageIconUtil.create(fileUrl));
+                mapLabelArray[i][j].setIcon(ImageIconUtil.create(iconSize, iconSize, fileUrl));
             }
         }
     }
@@ -73,8 +74,8 @@ public class MapPanel extends JPanel implements Observer{
     private void updateLabel(int oldX, int oldY, int newX, int newY){
         IThing hero = ThingFactory.create(ThingType.HERO);
         IThing tile = ThingFactory.create(ThingType.TILE);
-        mapLabelArray[newX][newY].setIcon(ImageIconUtil.create(hero.getPicName()));
-        mapLabelArray[oldX][oldY].setIcon(ImageIconUtil.create(tile.getPicName()));
+        mapLabelArray[newX][newY].setIcon(ImageIconUtil.create(iconSize, iconSize, hero.getPicName()));
+        mapLabelArray[oldX][oldY].setIcon(ImageIconUtil.create(iconSize, iconSize, tile.getPicName()));
     }
 
 

@@ -18,12 +18,12 @@ public class ImageIconUtil {
 
     private static final Map<String, ImageIcon> IMAGE_MAP = new HashMap<>(32);
 
-    public static ImageIcon create(String picName){
+    public static ImageIcon create(int width, int height, String picName){
         ImageIcon imageIcon = IMAGE_MAP.get(picName);
         if(imageIcon == null){
             try {
                 Image image = ImageIO.read(ImageIconUtil.class.getResource(PicConstant.PATH_PREFIX + picName));
-                imageIcon = new ImageIcon(image.getScaledInstance(40, 40, Image.SCALE_DEFAULT));
+                imageIcon = new ImageIcon(image.getScaledInstance(width, height, Image.SCALE_DEFAULT));
             }catch (IOException e){
                 e.printStackTrace();
             }

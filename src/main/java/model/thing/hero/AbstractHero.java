@@ -34,7 +34,7 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     public AbstractHero(Floor floor) {
         // todo 模版方法
-        initFloor(floor);
+        initUpFloor(floor);
         initBasicInfo();
         initRole();
         initMediator();
@@ -49,10 +49,16 @@ public abstract class AbstractHero extends Observable implements IThing {
         meetMediator = new ConcreteMeetMediator();
     }
 
-    private void initFloor(Floor floor){
+    private void initUpFloor(Floor floor){
         this.floor = floor;
-        currentX = floor.getStartX();
-        currentY = floor.getStartY();
+        currentX = floor.getUpX();
+        currentY = floor.getUpY();
+    }
+
+    private void initDownFloor(Floor floor){
+        this.floor = floor;
+        currentX = floor.getDownX();
+        currentY = floor.getDownY();
     }
 
     private void initBasicInfo(){
@@ -67,17 +73,18 @@ public abstract class AbstractHero extends Observable implements IThing {
     public void upstairs(){
         int level = floor.getLevel() + 1;
         Floor upFloor = FloorFactory.createFloor(level);
-        initFloor(upFloor);
-        initUpLocation();
+        initUpFloor(upFloor);
+        locate();
     }
 
     public void downstairs(){
         int level = floor.getLevel() - 1;
         Floor upFloor = FloorFactory.createFloor(level);
-        initFloor(upFloor);
+        initDownFloor(upFloor);
+        locate();
     }
 
-    public void initUpLocation(){
+    public void locate(){
         floor.locateThing(currentX, currentY, ThingType.HERO);
     }
 
@@ -149,7 +156,7 @@ public abstract class AbstractHero extends Observable implements IThing {
     }
 
     public void increaseDefence(int num){
-        this.defence -= num;
+        this.defence += num;
     }
 
     public void increaseBlood(int num){

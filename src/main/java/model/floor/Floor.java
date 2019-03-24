@@ -48,16 +48,27 @@ public abstract class Floor {
     }
 
     /**
-     * 获取起始点的x坐标
+     * 获取上楼初始的x坐标
      * @return
      */
-    public abstract int getStartX();
+    public abstract int getUpX();
 
     /**
-     * 获取起始点的y坐标
+     * 获取上楼初始的y坐标
      * @return
      */
-    public abstract int getStartY();
+    public abstract int getUpY();
 
+    /**
+     * 获取下楼初始的x坐标
+     * @return
+     */
+    public abstract int getDownX();
+
+    /**
+     * 获取下楼初始的y坐标
+     * @return
+     */
+    public abstract int getDownY();
 
 }
