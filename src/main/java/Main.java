@@ -1,4 +1,4 @@
-import ui.MainUi;
+import ui.frame.ConfigFrame;
 
 import javax.swing.*;
 
@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args){
-        SwingUtilities.invokeLater(MainUi::new);
+        SwingUtilities.invokeLater(ConfigFrame::new);
     }
 
 }

@@ -3,6 +3,7 @@ package model.thing;
 import model.floor.Floor;
 import model.thing.basic.TileThing;
 import model.thing.basic.WallThing;
+import model.thing.equipment.BookThing;
 import model.thing.door.BlueDoorThing;
 import model.thing.door.RedDoorThing;
 import model.thing.door.YellowDoorThing;
@@ -37,7 +38,7 @@ public class ThingFactory {
         return hero;
     }
 
-    public static AbstractHero createDefencer(Floor floor){
+    public static AbstractHero createDefender(Floor floor){
         AbstractHero hero = new DefenderHero(floor);
         THING_MAP.put(ThingType.HERO.ordinal(), hero);
         return hero;
@@ -109,6 +110,9 @@ public class ThingFactory {
                     break;
                 case 18:
                     thing = new BloodBottleThing();
+                    break;
+                case 19:
+                    thing = new BookThing();
                     break;
                     default:
                         throw new IllegalArgumentException("未识别地图物件类型:" + type);

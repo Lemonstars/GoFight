@@ -25,7 +25,7 @@ public class ShrekBlack extends AbstractMonster {
 
     @Override
     public String getDescription() {
-        return "shrek-black";
+        return "黑史莱克";
     }
 
     @Override

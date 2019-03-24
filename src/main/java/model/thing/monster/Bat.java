@@ -25,7 +25,7 @@ public class Bat extends AbstractMonster {
 
     @Override
     public String getDescription() {
-        return "bat";
+        return "蝙蝠";
     }
 
     @Override

@@ -10,6 +10,7 @@ public class NotificationContent {
     private boolean floorChanged;
     private boolean roleChanged;
     private boolean keyChanged;
+    private boolean equipmentChanged;
 
     private int oldX;
     private int oldY;
@@ -37,6 +38,14 @@ public class NotificationContent {
 
     public int getNewY() {
         return newY;
+    }
+
+    public boolean isEquipmentChanged() {
+        return equipmentChanged;
+    }
+
+    public void setEquipmentChanged(boolean equipmentChanged) {
+        this.equipmentChanged = equipmentChanged;
     }
 
     public boolean isFloorChanged() {

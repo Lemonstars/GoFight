@@ -25,7 +25,7 @@ public class Skeleton extends AbstractMonster {
 
     @Override
     public String getDescription() {
-        return "skeleton";
+        return "骷髅";
     }
 
     @Override

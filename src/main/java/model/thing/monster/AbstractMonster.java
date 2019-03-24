@@ -61,23 +61,23 @@ public abstract class AbstractMonster implements IThing{
      */
     abstract void initBasicInfo();
 
-     int getAttackNum(){
+     public int getAttackNum(){
          return attack;
      }
 
-     int getDefenceNum(){
+     public int getDefenceNum(){
         return defence;
      }
 
-     int getBlood(){
+     public int getBlood(){
         return blood;
      }
 
-     int getExperience(){
+     public int getExperience(){
         return experience;
      }
 
-     int getMoney(){
+     public int getMoney(){
         return money;
      }
 

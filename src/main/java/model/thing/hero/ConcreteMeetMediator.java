@@ -6,6 +6,7 @@ import model.thing.IThing;
 import model.thing.ThingType;
 import model.thing.basic.TileThing;
 import model.thing.door.IDoor;
+import model.thing.equipment.IEquipment;
 import model.thing.key.IKey;
 import model.thing.monster.AbstractMonster;
 import model.thing.self.ISelf;
@@ -59,6 +60,9 @@ public class ConcreteMeetMediator implements IMeetMediator{
             ((IStep)thing).step(hero);
             notificationContent.setFloorChanged(true);
             notificationContent.setRoleChanged(true);
+        }else if(thing instanceof IEquipment){
+            hero.equip((IEquipment)thing);
+            notificationContent.setEquipmentChanged(true);
         }
 
         hero.notifyObserverChanged(notificationContent);

@@ -5,7 +5,10 @@ import model.floor.Floor;
 import model.floor.FloorFactory;
 import model.thing.IThing;
 import model.thing.ThingType;
+import model.thing.equipment.IEquipment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 /**
@@ -14,12 +17,6 @@ import java.util.Observable;
  * @date 2019/03/21
  */
 public abstract class AbstractHero extends Observable implements IThing {
-
-    private Floor floor;
-    private int currentX;
-    private int currentY;
-
-    private ConcreteMeetMediator meetMediator;
 
     private int money;
     private int experience;
@@ -32,12 +29,21 @@ public abstract class AbstractHero extends Observable implements IThing {
     protected int blood;
     protected String description;
 
+    private Floor floor;
+    private int currentX;
+    private int currentY;
+
+    private ConcreteMeetMediator meetMediator;
+
+    private List<IEquipment> equipmentList;
+
     public AbstractHero(Floor floor) {
         // todo 模版方法
         initUpFloor(floor);
         initBasicInfo();
         initRole();
         initMediator();
+        initEquippmentContainer();
     }
 
     /**
@@ -47,6 +53,10 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     private void initMediator(){
         meetMediator = new ConcreteMeetMediator();
+    }
+
+    private void initEquippmentContainer(){
+        equipmentList = new ArrayList<>();
     }
 
     private void initUpFloor(Floor floor){
@@ -68,6 +78,10 @@ public abstract class AbstractHero extends Observable implements IThing {
         this.keyYellow = 3;
         this.keyBlue = 2;
         this.keyRed = 1;
+    }
+
+    public void equip(IEquipment equipment){
+        equipmentList.add(equipment);
     }
 
     public void upstairs(){
@@ -137,6 +151,10 @@ public abstract class AbstractHero extends Observable implements IThing {
     @Override
     public String getDescription() {
         return description;
+    }
+
+    public List<IEquipment> getEquipmentList() {
+        return equipmentList;
     }
 
     public void setBlood(int blood) {

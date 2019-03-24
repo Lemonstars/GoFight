@@ -1,9 +1,8 @@
-package ui.panel;
+package ui.frame;
 
 import model.floor.FloorFactory;
 import model.thing.ThingFactory;
 import model.thing.hero.AbstractHero;
-import ui.frame.BattleFrame;
 import util.ImageIconUtil;
 import util.LocationUtil;
 
@@ -69,7 +68,6 @@ public class ConfigFrame extends JFrame {
         add(attacker);
         setVisible(true);
 
-        // todo 配置界面消失
         attacker.addActionListener(e -> {
             AbstractHero hero = ThingFactory.createAttacker(FloorFactory.createFloor(1));
             hero.locate();
@@ -83,7 +81,7 @@ public class ConfigFrame extends JFrame {
         add(defender);
         setVisible(true);
         defender.addActionListener(e -> {
-            AbstractHero hero = ThingFactory.createDefencer(FloorFactory.createFloor(1));
+            AbstractHero hero = ThingFactory.createDefender(FloorFactory.createFloor(1));
             hero.locate();
             ConfigFrame.this.dispose();
             new BattleFrame(hero);
