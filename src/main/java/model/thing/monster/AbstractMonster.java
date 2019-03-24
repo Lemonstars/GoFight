@@ -25,13 +25,22 @@ public abstract class AbstractMonster implements IThing{
          int heroAttack = hero.getAttack();
          int heroDefence = hero.getDefence();
 
+         // 如果英雄攻击力小于怪物防御力，则无法攻击
          int heroHarmPerRound = heroAttack - getDefenceNum();
          if(heroHarmPerRound <= 0){
              return false;
          }
 
-         int monsterBlood = blood;
+         // 如果英雄对怪物的伤害为正，同时怪物对英雄没有伤害，则直接增加金币和经验
          int monsterHarmPerRound = getAttackNum() - heroDefence;
+         if(monsterHarmPerRound <= 0){
+             hero.increaseMoney(getMoney());
+             hero.increaseExperience(getExperience());
+             return true;
+         }
+
+         // 真实对战，若英雄血量先不大于0，则无法对战
+         int monsterBlood = blood;
          while (monsterBlood > 0){
              monsterBlood -= heroHarmPerRound;
              heroBlood -= monsterHarmPerRound;
@@ -40,10 +49,10 @@ public abstract class AbstractMonster implements IThing{
              }
          }
 
+         // 英雄战胜怪物，更新血量、金币和经验
          hero.setBlood(heroBlood);
          hero.increaseMoney(getMoney());
          hero.increaseExperience(getExperience());
-
          return true;
      }
 
