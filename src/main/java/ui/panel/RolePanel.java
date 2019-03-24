@@ -1,6 +1,7 @@
 package ui.panel;
 
 import data.NotificationContent;
+import model.floor.Floor;
 import model.thing.hero.AbstractHero;
 
 import javax.swing.*;
@@ -19,7 +20,7 @@ public class RolePanel extends JPanel implements Observer{
 
     private JLabel[] roleLabel = new JLabel[6];
     private JLabel[] valueLabel = new JLabel[6];
-    private String[] roleStr = {"角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
+    private String[] roleStr = {"楼层", "角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
     private String[] valueStr = new String[roleStr.length];
 
     public RolePanel(AbstractHero hero) {
@@ -53,7 +54,7 @@ public class RolePanel extends JPanel implements Observer{
 
             int roleX = 30;
             int valueX = 110;
-            int y = 10 + 30 * i;
+            int y = 5 + 30 * i;
             int width = 50;
             int height = 30;
 
@@ -65,12 +66,15 @@ public class RolePanel extends JPanel implements Observer{
     }
 
     private void configHintContent(){
-        valueStr[0] = hero.getDescription();
-        valueStr[1] = String.valueOf(hero.getMoney());
-        valueStr[2] = String.valueOf(hero.getExperience());
-        valueStr[3] = String.valueOf(hero.getBlood());
-        valueStr[4] = String.valueOf(hero.getAttack());
-        valueStr[5] = String.valueOf(hero.getDefence());
+        Floor floor = hero.getFloor();
+        int level = floor.getLevel();
+        valueStr[0] = "第" + level + "层";
+        valueStr[1] = hero.getDescription();
+        valueStr[2] = String.valueOf(hero.getMoney());
+        valueStr[3] = String.valueOf(hero.getExperience());
+        valueStr[4] = String.valueOf(hero.getBlood());
+        valueStr[5] = String.valueOf(hero.getAttack());
+        valueStr[6] = String.valueOf(hero.getDefence());
 
         for(int i=0; i<valueLabel.length; i++){
             valueLabel[i].setText(valueStr[i]);

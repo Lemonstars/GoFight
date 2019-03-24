@@ -58,6 +58,7 @@ public class ConcreteMeetMediator implements IMeetMediator{
         }else if(thing instanceof IStep) {
             ((IStep)thing).step(hero);
             notificationContent.setFloorChanged(true);
+            notificationContent.setRoleChanged(true);
         }
 
         hero.notifyObserverChanged(notificationContent);
