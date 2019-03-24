@@ -7,8 +7,8 @@ package model.floor;
  */
 public class Floor4 extends Floor{
 
-    public Floor4(String floorFile) {
-        super(floorFile);
+    public Floor4(String floorFile, int level) {
+        super(floorFile, level);
     }
 
     @Override

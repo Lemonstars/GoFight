@@ -1,7 +1,5 @@
 package model.thing.hero;
 
-import model.thing.IThing;
-
 /**
  * @author 刘兴
  * @version 1.0
@@ -17,6 +15,6 @@ public interface IMeetMediator {
      * @param newX
      * @param newY
      */
-    void meet(AbstractHero hero, IThing iThing, int newX, int newY);
+    void meet(AbstractHero hero, int newX, int newY);
 
 }

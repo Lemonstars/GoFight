@@ -64,7 +64,20 @@ public abstract class AbstractHero extends Observable implements IThing {
         this.keyRed = 1;
     }
 
-    public void initLocation(){
+    public void upstairs(){
+        int level = floor.getLevel() + 1;
+        Floor upFloor = FloorFactory.createFloor(level);
+        initFloor(upFloor);
+        initUpLocation();
+    }
+
+    public void downstairs(){
+        int level = floor.getLevel() - 1;
+        Floor upFloor = FloorFactory.createFloor(level);
+        initFloor(upFloor);
+    }
+
+    public void initUpLocation(){
         floor.locateThing(currentX, currentY, ThingType.HERO);
     }
 
@@ -88,9 +101,7 @@ public abstract class AbstractHero extends Observable implements IThing {
         int newX = isX ? currentX + (isAdd ? 1 : -1): currentX;
         int newY = isX ? currentY: currentY + (isAdd ? 1 : -1);
 
-        // if the new location is the wall, the hero does not move
-        IThing thing = floor.getThingType(newX, newY);
-        meetMediator.meet(this, thing, newX, newY);
+        meetMediator.meet(this, newX, newY);
     }
 
     public void notifyObserverChanged(NotificationContent content){

@@ -3,6 +3,7 @@ package model.floor;
 import constant.MapConstant;
 import model.thing.IThing;
 import model.thing.ThingFactory;
+import model.thing.ThingType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class FloorDataLoader {
         IThing[][] floor = new IThing[MapConstant.ROW][MapConstant.COL];
         for(int i=0; i<MapConstant.ROW; i++){
             for(int j=0; j<MapConstant.COL; j++){
-                floor[i][j] = ThingFactory.create(0);
+                floor[i][j] = ThingFactory.create(ThingType.TILE);
             }
         }
 

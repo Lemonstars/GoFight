@@ -1,10 +1,8 @@
 package model.thing;
 
 import model.floor.Floor;
-import model.floor.FloorFactory;
 import model.thing.basic.TileThing;
 import model.thing.basic.WallThing;
-import model.thing.monster.*;
 import model.thing.door.BlueDoorThing;
 import model.thing.door.RedDoorThing;
 import model.thing.door.YellowDoorThing;
@@ -14,6 +12,7 @@ import model.thing.hero.DefenderHero;
 import model.thing.key.BlueKeyThing;
 import model.thing.key.RedKeyThing;
 import model.thing.key.YellowKeyThing;
+import model.thing.monster.*;
 import model.thing.self.BloodBottleThing;
 import model.thing.self.BlueGemstoneThing;
 import model.thing.self.RedGemstoneThing;

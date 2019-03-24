@@ -7,6 +7,7 @@ package data;
  */
 public class NotificationContent {
 
+    private boolean floorChanged;
     private boolean roleChanged;
     private boolean keyChanged;
 
@@ -36,6 +37,14 @@ public class NotificationContent {
 
     public int getNewY() {
         return newY;
+    }
+
+    public boolean isFloorChanged() {
+        return floorChanged;
+    }
+
+    public void setFloorChanged(boolean floorChanged) {
+        this.floorChanged = floorChanged;
     }
 
     public boolean isRoleChanged() {

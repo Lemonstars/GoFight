@@ -34,7 +34,7 @@ public class MainUi {
 
         // todo 如何选择角色类型
         AbstractHero hero = ThingFactory.createAttacker(FloorFactory.createFloor(1));
-        hero.initLocation();
+        hero.initUpLocation();
 
         addPanel(jFrame, new MapPanel(hero));
         addPanel(jFrame, new RolePanel(hero));

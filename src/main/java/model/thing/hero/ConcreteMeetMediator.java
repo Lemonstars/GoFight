@@ -4,10 +4,12 @@ import data.NotificationContent;
 import model.floor.Floor;
 import model.thing.IThing;
 import model.thing.ThingType;
+import model.thing.basic.TileThing;
 import model.thing.door.IDoor;
 import model.thing.key.IKey;
 import model.thing.monster.AbstractMonster;
 import model.thing.self.ISelf;
+import model.thing.step.IStep;
 
 /**
  * @author 刘兴
@@ -17,7 +19,7 @@ import model.thing.self.ISelf;
 public class ConcreteMeetMediator implements IMeetMediator{
 
     @Override
-    public void meet(AbstractHero hero, IThing thing, int newX, int newY) {
+    public void meet(AbstractHero hero, int newX, int newY) {
         // go beyond the range of the map
         Floor floor = hero.getFloor();
         boolean isValid = floor.isValidLocation(newX, newY);
@@ -26,6 +28,7 @@ public class ConcreteMeetMediator implements IMeetMediator{
         }
 
         // if the new location is the wall
+        IThing thing = floor.getThingType(newX, newY);
         ThingType type = thing.getThingType();
         if(type == ThingType.WALL){
             return;
@@ -34,22 +37,29 @@ public class ConcreteMeetMediator implements IMeetMediator{
         int currentX = hero.getCurrentX();
         int currentY = hero.getCurrentY();
         NotificationContent notificationContent = new NotificationContent(currentX, currentY, newX, newY);
-        if(thing instanceof IKey){
-            notificationContent.setKeyChanged(true);
+        if(thing instanceof TileThing){
+            hero.moveTo(newX, newY);
+        }else if(thing instanceof IKey){
             ((IKey)thing).increaseKey(hero);
+            notificationContent.setKeyChanged(true);
+            hero.moveTo(newX, newY);
         }else if(thing instanceof IDoor){
             boolean changed = ((IDoor)thing).decreaseKey(hero);
             notificationContent.setKeyChanged(changed);
+            hero.moveTo(newX, newY);
         }else if(thing instanceof ISelf){
             notificationContent.setRoleChanged(true);
             ((ISelf)thing).benefit(hero);
+            hero.moveTo(newX, newY);
         }else if(thing instanceof AbstractMonster){
             boolean changed = ((AbstractMonster)thing).attack(hero);
             notificationContent.setRoleChanged(changed);
+            hero.moveTo(newX, newY);
+        }else if(thing instanceof IStep) {
+            ((IStep)thing).step(hero);
+            notificationContent.setFloorChanged(true);
         }
-        // todo 楼梯
 
-        hero.moveTo(newX, newY);
         hero.notifyObserverChanged(notificationContent);
     }
 }

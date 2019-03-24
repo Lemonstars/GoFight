@@ -32,27 +32,40 @@ public class MapPanel extends JPanel implements Observer{
         GridLayout groupLayout = new GridLayout(MapConstant.ROW, MapConstant.COL);
         this.setLayout(groupLayout);
 
-        initMapLabel();
+        configMapLabel();
+        configMapLabelIcon();
         this.setVisible(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
         NotificationContent content = (NotificationContent)arg;
-        updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
+        if(content.isFloorChanged()){
+            configMapLabelIcon();
+        }else {
+            updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
+        }
     }
 
-    private void initMapLabel(){
+    private void configMapLabel(){
+        mapLabelArray = new JLabel[MapConstant.ROW][MapConstant.COL];
+        for(int i = 0; i< mapLabelArray.length; i ++){
+            for(int j = 0; j< mapLabelArray[0].length; j++){
+                mapLabelArray[i][j] = new JLabel();
+                this.add(mapLabelArray[i][j]);
+            }
+        }
+    }
+
+    private void configMapLabelIcon(){
         Floor floor = hero.getFloor();
         IThing[][] distribution = floor.getFloorDistribution();
         String fileUrl;
 
-        mapLabelArray = new JLabel[MapConstant.ROW][MapConstant.COL];
         for(int i = 0; i< mapLabelArray.length; i ++){
             for(int j = 0; j< mapLabelArray[0].length; j++){
                 fileUrl = distribution[i][j].getPicName();
-                mapLabelArray[i][j] = new JLabel(ImageIconUtil.create(fileUrl));
-                this.add(mapLabelArray[i][j]);
+                mapLabelArray[i][j].setIcon(ImageIconUtil.create(fileUrl));
             }
         }
     }

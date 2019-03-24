@@ -12,11 +12,13 @@ import model.thing.ThingType;
  */
 public abstract class Floor {
 
+    private int level;
     private String floorFile;
     private IThing[][] distribution;
 
-    public Floor(String floorFile) {
+    public Floor(String floorFile, int level) {
         this.floorFile = floorFile;
+        this.level = level;
         getFloorDistribution();
     }
 
@@ -39,6 +41,10 @@ public abstract class Floor {
 
     public IThing getThingType(int x, int y){
         return distribution[x][y];
+    }
+
+    public int getLevel() {
+        return level;
     }
 
     /**
