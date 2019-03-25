@@ -25,10 +25,12 @@ public abstract class AbstractMonster implements IThing, IColleague{
     @Override
     public void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
         boolean changed = attack(hero);
-        content.setRoleChanged(changed);
-        content.setHero(hero);
-        hero.moveTo(newX, newY);
-        hero.notifyObserverChanged(content);
+        if(changed){
+            content.setRoleChanged(changed);
+            content.setHero(hero);
+            hero.moveTo(newX, newY);
+            hero.notifyObserverChanged(content);
+        }
     }
 
     public boolean attack(AbstractHero hero){

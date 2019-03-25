@@ -16,7 +16,7 @@ import java.util.Observer;
  */
 public class RolePanel extends JPanel implements Observer{
 
-    private String[] roleStr = {"楼层", "角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
+    private String[] roleStr = {"楼层", "角色", "等级","金币",  "经验", "生命值", "攻击值", "防守值"};
     private String[] valueStr = new String[roleStr.length];
     private JLabel[] roleLabel = new JLabel[roleStr.length];
     private JLabel[] valueLabel = new JLabel[roleStr.length];
@@ -52,9 +52,9 @@ public class RolePanel extends JPanel implements Observer{
 
             int roleX = 30;
             int valueX = 100;
-            int y = 5 + 27 * i;
+            int y = 5 + 25 * i;
             int width = 80;
-            int height = 30;
+            int height = 25;
 
             roleLabel[i].setBounds(roleX, y, width, height);
             valueLabel[i].setBounds(valueX, y, width, height);
@@ -68,11 +68,12 @@ public class RolePanel extends JPanel implements Observer{
         int level = floor.getLevel();
         valueStr[0] = "第" + level + "层";
         valueStr[1] = hero.getDescription();
-        valueStr[2] = String.valueOf(hero.getMoney());
-        valueStr[3] = String.valueOf(hero.getExperience());
-        valueStr[4] = String.valueOf(hero.getBlood());
-        valueStr[5] = String.valueOf(hero.getAttack());
-        valueStr[6] = String.valueOf(hero.getDefence());
+        valueStr[2] = String.valueOf(hero.getLevel());
+        valueStr[3] = String.valueOf(hero.getMoney());
+        valueStr[4] = String.valueOf(hero.getExperience());
+        valueStr[5] = String.valueOf(hero.getBlood());
+        valueStr[6] = String.valueOf(hero.getAttack());
+        valueStr[7] = String.valueOf(hero.getDefence());
 
         for(int i=0; i<valueLabel.length; i++){
             valueLabel[i].setText(valueStr[i]);

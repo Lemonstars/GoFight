@@ -11,8 +11,8 @@ public class ShrekRed extends AbstractMonster {
 
     @Override
     void initBasicInfo() {
-        this.attack = 15;
-        this.defence = 15;
+        this.attack = 13;
+        this.defence = 13;
         this.blood = 200;
         this.money = 5;
         this.experience = 8;

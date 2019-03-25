@@ -9,6 +9,7 @@ import model.thing.hero.AbstractHero;
  */
 public class NotificationContent {
 
+    private boolean isShop;
     private boolean equipmentChanged;
     private boolean weaponChanged;
     private boolean floorChanged;
@@ -32,6 +33,14 @@ public class NotificationContent {
 
     public AbstractHero getHero() {
         return hero;
+    }
+
+    public boolean isShop() {
+        return isShop;
+    }
+
+    public void setShop(boolean shop) {
+        isShop = shop;
     }
 
     public void setHero(AbstractHero hero) {

@@ -43,7 +43,9 @@ public class MapPanel extends JPanel implements Observer{
         if(content.isFloorChanged()){
             configMapLabelIcon(hero);
         }else {
-            updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
+            if(!content.isShop()){
+                updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
+            }
         }
     }
 

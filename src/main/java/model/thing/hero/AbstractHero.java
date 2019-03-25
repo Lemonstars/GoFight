@@ -26,6 +26,7 @@ public abstract class AbstractHero extends Observable implements IThing {
     protected int keyBlue;
     protected int keyRed;
 
+    protected int level;
     protected int attack;
     protected int defence;
     protected int blood;
@@ -199,6 +200,10 @@ public abstract class AbstractHero extends Observable implements IThing {
         this.keyRed--;
     }
 
+    public void decreaseExperience(int num){
+        this.experience -= num;
+    }
+
     public int getCurrentX() {
         return currentX;
     }
@@ -241,6 +246,14 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     public Floor getFloor() {
         return floor;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public ConcreteMeetMediator getMeetMediator() {

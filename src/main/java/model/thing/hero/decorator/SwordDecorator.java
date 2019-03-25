@@ -41,6 +41,7 @@ public class SwordDecorator extends AbstractWeaponDecorator {
 
     @Override
     public void initRole() {
+        this.level = basicHero.getLevel();
         this.attack = (int)(basicHero.getAttack() * 1.1);
         this.defence = basicHero.getDefence();
         this.blood = basicHero.getBlood();
@@ -160,6 +161,11 @@ public class SwordDecorator extends AbstractWeaponDecorator {
     @Override
     public void decreaseRedKey() {
         basicHero.decreaseRedKey();
+    }
+
+    @Override
+    public void decreaseExperience(int num) {
+        basicHero.decreaseExperience(num);
     }
 
     @Override

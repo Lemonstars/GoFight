@@ -5,6 +5,7 @@ import model.floor.Floor;
 import model.thing.IThing;
 import model.thing.ThingType;
 import model.thing.hero.AbstractHero;
+import model.thing.shop.ExperienceShop;
 
 /**
  * @author 刘兴
