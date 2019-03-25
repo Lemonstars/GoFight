@@ -13,6 +13,7 @@ public class NotificationContent {
     private boolean roleChanged;
     private boolean keyChanged;
     private boolean equipmentChanged;
+    private boolean decorated;
 
     private int oldX;
     private int oldY;
@@ -34,6 +35,14 @@ public class NotificationContent {
 
     public void setHero(AbstractHero hero) {
         this.hero = hero;
+    }
+
+    public boolean isDecorated() {
+        return decorated;
+    }
+
+    public void setDecorated(boolean decorated) {
+        this.decorated = decorated;
     }
 
     public int getOldX() {

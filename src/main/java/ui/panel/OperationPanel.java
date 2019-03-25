@@ -1,38 +1,41 @@
 package ui.panel;
 
+import data.NotificationContent;
 import model.thing.hero.AbstractHero;
 import model.thing.hero.commond.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/18
  */
-public class OperationPanel extends JPanel{
-
-    private AbstractHero hero;
+public class OperationPanel extends JPanel implements Observer{
 
     private CommandInvoker commandInvoker;
 
-    private JButton[] directionButton = new JButton[4];
     private String[] directionStr = {"上", "下", "左", "右"};
+    private JButton[] directionButton = new JButton[4];
+    private ActionListener[] directionListener = new ActionListener[4];
 
     private JButton[] settingButton = new JButton[3];
     private String[] settingStr = {"保存进度", "退出游戏", "重新开始"};
 
     public OperationPanel(AbstractHero hero) {
-        this.hero = hero;
-
+        hero.addObserver(this);
         this.setBounds(800, 200, 200, 400);
         this.setLayout(null);
         this.setBackground(new Color(91, 213, 255));
 
         configDirectionButton();
         configSettingButton();
-        configListener();
+        configListener(hero);
 
         this.setVisible(true);
     }
@@ -66,25 +69,45 @@ public class OperationPanel extends JPanel{
 
     }
 
-    private void configListener(){
+    private void configListener(AbstractHero hero){
         commandInvoker = new CommandInvoker();
-        directionButton[0].addActionListener(e -> {
+
+        for(int i=0; i < directionButton.length; i++){
+            directionButton[i].removeActionListener(directionListener[i]);
+        }
+
+        directionListener[0] = e -> {
             commandInvoker.setCommand(new UpCommand(hero));
             commandInvoker.invoke();
-        });
-        directionButton[1].addActionListener(e -> {
+        };
+
+        directionListener[1] = e -> {
             commandInvoker.setCommand(new DownCommand(hero));
             commandInvoker.invoke();
-        });
-        directionButton[2].addActionListener(e -> {
+        };
+
+        directionListener[2] = e -> {
             commandInvoker.setCommand(new LeftCommand(hero));
             commandInvoker.invoke();
-        });
-        directionButton[3].addActionListener(e -> {
+        };
+
+        directionListener[3] = e -> {
             commandInvoker.setCommand(new RightCommand(hero));
             commandInvoker.invoke();
-        });
+        };
+
+        for(int i=0; i < directionButton.length; i++){
+            directionButton[i].addActionListener(directionListener[i]);
+        }
 
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        NotificationContent content = (NotificationContent)arg;
+        if(content.isDecorated()){
+            AbstractHero hero = content.getHero();
+            configListener(hero);
+        }
+    }
 }

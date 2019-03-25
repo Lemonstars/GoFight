@@ -1,5 +1,8 @@
 package model.thing.hero.decorator;
 
+import data.NotificationContent;
+import model.floor.Floor;
+import model.thing.equipment.IEquipment;
 import model.thing.hero.AbstractHero;
 
 /**
@@ -39,4 +42,63 @@ public class SwordDecorator extends AbstractWeaponDecorator {
         this.description = basicHero.getDescription() + "佩剑";
     }
 
+    @Override
+    public void notifyObserverChanged(NotificationContent content) {
+        basicHero.notifyObserverChanged(content);
+    }
+
+    @Override
+    public void initUpFloor(Floor floor) {
+        basicHero.initUpFloor(floor);
+    }
+
+    @Override
+    public void initBasicInfo() {
+        basicHero.initBasicInfo();
+    }
+
+    @Override
+    public void equip(IEquipment equipment) {
+        basicHero.equip(equipment);
+    }
+
+    @Override
+    public void upstairs() {
+        basicHero.upstairs();
+    }
+
+    @Override
+    public void downstairs() {
+        basicHero.downstairs();
+    }
+
+    @Override
+    public void locate() {
+        basicHero.locate();
+    }
+
+    @Override
+    public void goUp() {
+        basicHero.goUp();
+    }
+
+    @Override
+    public void goDown() {
+        basicHero.goDown();
+    }
+
+    @Override
+    public void goLeft() {
+        basicHero.goLeft();
+    }
+
+    @Override
+    public void goRight() {
+        basicHero.goRight();
+    }
+
+    @Override
+    public void moveTo(int newX, int newY) {
+        basicHero.moveTo(newX, newY);
+    }
 }

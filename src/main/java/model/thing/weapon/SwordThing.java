@@ -14,15 +14,13 @@ public class SwordThing implements IWeapon{
 
     @Override
     public void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
-        AbstractHero notDecoratedHero = hero;
         hero.moveTo(newX, newY);
         hero = new SwordDecorator(hero);
-
-        // todo not decorate
         hero.initRole();
         content.setHero(hero);
         content.setRoleChanged(true);
-        notDecoratedHero.notifyObserverChanged(content);
+        content.setDecorated(true);
+        hero.notifyObserverChanged(content);
     }
 
     @Override

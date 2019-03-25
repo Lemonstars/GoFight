@@ -51,10 +51,10 @@ public class RolePanel extends JPanel implements Observer{
             valueLabel[i] = new JLabel();
 
             int roleX = 30;
-            int valueX = 110;
+            int valueX = 100;
             int y = 5 + 27 * i;
-            int width = 50;
-            int height = 25;
+            int width = 80;
+            int height = 30;
 
             roleLabel[i].setBounds(roleX, y, width, height);
             valueLabel[i].setBounds(valueX, y, width, height);
