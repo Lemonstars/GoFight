@@ -31,7 +31,8 @@ public class ConcreteMeetMediator implements IMeetMediator {
 
         int currentX = hero.getCurrentX();
         int currentY = hero.getCurrentY();
-        NotificationContent notificationContent = new NotificationContent(currentX, currentY, newX, newY);
+        NotificationContent notificationContent =
+                new NotificationContent(currentX, currentY, newX, newY);
         if(thing instanceof IColleague){
             ((IColleague)thing).mediate(hero, newX, newY, notificationContent);
         }

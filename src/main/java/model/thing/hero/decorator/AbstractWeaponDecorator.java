@@ -8,7 +8,4 @@ import model.thing.hero.AbstractHero;
  * @date 2019/03/25
  */
 public abstract class AbstractWeaponDecorator extends AbstractHero{
-
-
-
 }

@@ -55,8 +55,7 @@ public class ThingFactory {
         return create(thingType.ordinal());
     }
 
-    public static IThing create(int type){
-        // todo 享元工厂
+    public static IThing create(int type){ 
         IThing thing = THING_MAP.get(type);
 
         if(null == thing){

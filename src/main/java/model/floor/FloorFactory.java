@@ -13,7 +13,6 @@ public class FloorFactory {
     private static final Map<Integer, Floor> FLOOR_MAP = new HashMap<>();
 
     public static Floor createFloor(int floorLevel){
-        // todo 享元工厂
         Floor floor = FLOOR_MAP.get(floorLevel);
         if(null == floor){
             switch (floorLevel){

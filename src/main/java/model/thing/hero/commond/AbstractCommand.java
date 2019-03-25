@@ -13,7 +13,6 @@ public abstract class AbstractCommand {
     protected AbstractHero hero;
 
     public AbstractCommand(AbstractHero hero) {
-        // todo 命令模式
         this.hero = hero;
     }
 

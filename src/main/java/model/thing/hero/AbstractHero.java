@@ -117,7 +117,6 @@ public abstract class AbstractHero extends Observable implements IThing {
     }
 
     public void notifyObserverChanged(NotificationContent content){
-        // todo 观察者模式
         setChanged();
         notifyObservers(content);
     }
