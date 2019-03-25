@@ -6,6 +6,7 @@ import model.floor.FloorFactory;
 import model.thing.IThing;
 import model.thing.ThingType;
 import model.thing.equipment.IEquipment;
+import model.thing.hero.mediator.ConcreteMeetMediator;
 
 import java.util.ArrayList;
 import java.util.List;

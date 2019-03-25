@@ -19,6 +19,8 @@ import model.thing.self.BlueGemstoneThing;
 import model.thing.self.RedGemstoneThing;
 import model.thing.step.StepDownThing;
 import model.thing.step.StepUpThing;
+import model.thing.weapon.ShieldThing;
+import model.thing.weapon.SwordThing;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,6 +115,12 @@ public class ThingFactory {
                     break;
                 case 19:
                     thing = new BookThing();
+                    break;
+                case 20:
+                    thing = new SwordThing();
+                    break;
+                case 21:
+                    thing = new ShieldThing();
                     break;
                     default:
                         throw new IllegalArgumentException("未识别地图物件类型:" + type);

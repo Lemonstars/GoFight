@@ -1,4 +1,6 @@
-package model.thing.hero;
+package model.thing.hero.mediator;
+
+import model.thing.hero.AbstractHero;
 
 /**
  * @author 刘兴
@@ -11,7 +13,6 @@ public interface IMeetMediator {
     /**
      * 英雄和物件相遇
      * @param hero
-     * @param iThing
      * @param newX
      * @param newY
      */

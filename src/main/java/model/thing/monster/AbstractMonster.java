@@ -1,14 +1,16 @@
 package model.thing.monster;
 
+import data.NotificationContent;
 import model.thing.IThing;
 import model.thing.hero.AbstractHero;
+import model.thing.hero.mediator.IColleague;
 
 /**
  * @author 刘兴
  * @version 1.0
  * @date 2019/03/21
  */
-public abstract class AbstractMonster implements IThing{
+public abstract class AbstractMonster implements IThing, IColleague{
 
     protected int attack;
     protected int defence;
@@ -18,6 +20,13 @@ public abstract class AbstractMonster implements IThing{
 
     public AbstractMonster() {
         initBasicInfo();
+    }
+
+    @Override
+    public void mediate(AbstractHero hero, int newX, int newY, NotificationContent notificationContent) {
+        boolean changed = attack(hero);
+        notificationContent.setRoleChanged(changed);
+        hero.moveTo(newX, newY);
     }
 
     public boolean attack(AbstractHero hero){

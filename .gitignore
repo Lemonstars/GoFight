@@ -1,3 +1,4 @@
 .idea/
 gofight.iml
 target/
+command*.txt

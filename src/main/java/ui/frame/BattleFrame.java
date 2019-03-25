@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class BattleFrame extends JFrame{
 
-    public static final String COMMAND_FILE_NAME = "command" + System.currentTimeMillis();
+    public static final String COMMAND_FILE_NAME = "command" + System.currentTimeMillis() + ".txt";
 
     public BattleFrame(AbstractHero hero) throws HeadlessException {
         init(hero);
