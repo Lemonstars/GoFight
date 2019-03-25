@@ -1,8 +1,6 @@
 package model.thing.hero;
 
 
-import model.floor.Floor;
-
 /**
  * @author 刘兴
  * @version 1.0
@@ -10,12 +8,8 @@ import model.floor.Floor;
  */
 public class DefenderHero extends AbstractHero {
 
-    public DefenderHero(Floor floor) {
-        super(floor);
-    }
-
     @Override
-    void initRole() {
+    public void initRole() {
         this.attack = 12;
         this.defence = 15;
         this.blood = 200;

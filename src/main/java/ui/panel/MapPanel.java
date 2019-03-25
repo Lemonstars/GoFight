@@ -22,27 +22,26 @@ import java.util.Observer;
 public class MapPanel extends JPanel implements Observer{
 
     private int iconSize = 40;
-    private AbstractHero hero;
     private JLabel[][] mapLabelArray;
 
     public MapPanel(AbstractHero hero) {
-        this.hero = hero;
-        this.hero.addObserver(this);
+        hero.addObserver(this);
         this.setBounds(0, 0, 800, 400);
 
         GridLayout groupLayout = new GridLayout(MapConstant.ROW, MapConstant.COL);
         this.setLayout(groupLayout);
 
         configMapLabel();
-        configMapLabelIcon();
+        configMapLabelIcon(hero);
         this.setVisible(true);
     }
 
     @Override
     public void update(Observable o, Object arg) {
         NotificationContent content = (NotificationContent)arg;
+        AbstractHero hero = content.getHero();
         if(content.isFloorChanged()){
-            configMapLabelIcon();
+            configMapLabelIcon(hero);
         }else {
             updateLabel(content.getOldX(), content.getOldY(), content.getNewX(), content.getNewY());
         }
@@ -58,7 +57,7 @@ public class MapPanel extends JPanel implements Observer{
         }
     }
 
-    private void configMapLabelIcon(){
+    private void configMapLabelIcon(AbstractHero hero){
         Floor floor = hero.getFloor();
         IThing[][] distribution = floor.getFloorDistribution();
         String fileUrl;

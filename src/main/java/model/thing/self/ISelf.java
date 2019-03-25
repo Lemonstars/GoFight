@@ -13,10 +13,12 @@ import model.thing.hero.mediator.IColleague;
 public interface ISelf extends IThing, IColleague{
 
     @Override
-    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent notificationContent) {
-        notificationContent.setRoleChanged(true);
+    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
+        content.setRoleChanged(true);
         benefit(hero);
         hero.moveTo(newX, newY);
+        content.setHero(hero);
+        hero.notifyObserverChanged(content);
     }
 
     /**

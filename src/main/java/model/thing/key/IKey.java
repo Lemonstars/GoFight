@@ -13,10 +13,12 @@ import model.thing.hero.mediator.IColleague;
 public interface IKey extends IThing, IColleague{
 
     @Override
-    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent notificationContent) {
+    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
         increaseKey(hero);
-        notificationContent.setKeyChanged(true);
+        content.setKeyChanged(true);
+        content.setHero(hero);
         hero.moveTo(newX, newY);
+        hero.notifyObserverChanged(content);
     }
 
     /**

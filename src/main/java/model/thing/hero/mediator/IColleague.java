@@ -10,6 +10,13 @@ import model.thing.hero.AbstractHero;
  */
 public interface IColleague {
 
+    /**
+     * 中介方法
+     * @param hero
+     * @param newX
+     * @param newY
+     * @param content
+     */
     void mediate(AbstractHero hero, int newX, int newY, NotificationContent content);
 
 }

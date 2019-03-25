@@ -19,8 +19,6 @@ import java.util.Observer;
  */
 public class InfoPanel extends JPanel implements Observer{
 
-    private AbstractHero hero;
-
     private String[] titleStr = { "武器", "技能", "装备", "钥匙"};
     private JLabel[] titleLabel = new JLabel[titleStr.length];
 
@@ -33,8 +31,7 @@ public class InfoPanel extends JPanel implements Observer{
     private JButton[] equipmentButton = new JButton[2];
 
     public InfoPanel(AbstractHero hero) {
-        this.hero = hero;
-        this.hero.addObserver(this);
+        hero.addObserver(this);
 
         this.setBounds(0, 400, 800, 200);
         this.setLayout(null);
@@ -42,7 +39,7 @@ public class InfoPanel extends JPanel implements Observer{
 
         configTitleLabel();
         configKeyHintLabel();
-        configKeyContent();
+        configKeyContent(hero);
         configDecoratorButton();
 
         this.setVisible(true);
@@ -51,12 +48,13 @@ public class InfoPanel extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         NotificationContent content = (NotificationContent)arg;
+        AbstractHero hero = content.getHero();
         if(content.isKeyChanged()){
-            configKeyContent();
+            configKeyContent(hero);
         }
 
         if(content.isEquipmentChanged()){
-            showEquipment();
+            showEquipment(hero);
         }
 
     }
@@ -92,7 +90,7 @@ public class InfoPanel extends JPanel implements Observer{
         }
     }
 
-    private void configKeyContent(){
+    private void configKeyContent(AbstractHero hero){
         keyContentStr[0] = hero.getKeyYellow();
         keyContentStr[1] = hero.getKeyBlue();
         keyContentStr[2] = hero.getKeyRed();
@@ -112,7 +110,7 @@ public class InfoPanel extends JPanel implements Observer{
         }
     }
 
-    private void showEquipment(){
+    private void showEquipment(AbstractHero hero){
         List<IEquipment> equipmentList = hero.getEquipmentList();
         for(int i=0; i<equipmentList.size(); i++){
             IEquipment equipment = equipmentList.get(i);

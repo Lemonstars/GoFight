@@ -16,23 +16,20 @@ import java.util.Observer;
  */
 public class RolePanel extends JPanel implements Observer{
 
-    private AbstractHero hero;
-
     private String[] roleStr = {"楼层", "角色", "金币",  "经验", "生命值", "攻击值", "防守值"};
     private String[] valueStr = new String[roleStr.length];
     private JLabel[] roleLabel = new JLabel[roleStr.length];
     private JLabel[] valueLabel = new JLabel[roleStr.length];
 
     public RolePanel(AbstractHero hero) {
-        this.hero = hero;
-        this.hero.addObserver(this);
+        hero.addObserver(this);
 
         this.setBounds(800, 0, 200, 200);
         this.setLayout(null);
         this.setBackground(new Color(186, 231, 255));
 
         configHintLabel();
-        configHintContent();
+        configHintContent(hero);
 
         this.setVisible(true);
     }
@@ -41,7 +38,8 @@ public class RolePanel extends JPanel implements Observer{
     public void update(Observable o, Object arg) {
         NotificationContent content = (NotificationContent)arg;
         if(content.isRoleChanged()){
-            configHintContent();
+            AbstractHero hero = content.getHero();
+            configHintContent(hero);
         }
     }
 
@@ -65,7 +63,7 @@ public class RolePanel extends JPanel implements Observer{
         }
     }
 
-    private void configHintContent(){
+    private void configHintContent(AbstractHero hero){
         Floor floor = hero.getFloor();
         int level = floor.getLevel();
         valueStr[0] = "第" + level + "层";

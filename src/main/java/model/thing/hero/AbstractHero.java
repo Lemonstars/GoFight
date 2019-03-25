@@ -19,48 +19,31 @@ import java.util.Observable;
  */
 public abstract class AbstractHero extends Observable implements IThing {
 
-    private int money;
-    private int experience;
-    private int keyYellow;
-    private int keyBlue;
-    private int keyRed;
+    protected int money;
+    protected int experience;
+    protected int keyYellow;
+    protected int keyBlue;
+    protected int keyRed;
 
     protected int attack;
     protected int defence;
     protected int blood;
     protected String description;
 
-    private Floor floor;
-    private int currentX;
-    private int currentY;
+    protected Floor floor;
+    protected int currentX;
+    protected int currentY;
 
-    private ConcreteMeetMediator meetMediator;
+    protected ConcreteMeetMediator meetMediator = new ConcreteMeetMediator();
 
-    private List<IEquipment> equipmentList;
-
-    public AbstractHero(Floor floor) {
-        // todo 模版方法
-        initUpFloor(floor);
-        initBasicInfo();
-        initRole();
-        initMediator();
-        initEquippmentContainer();
-    }
+    protected List<IEquipment> equipmentList = new ArrayList<>();
 
     /**
      * delay to initialize according to different roles
      */
-    abstract void initRole();
+    public abstract void initRole();
 
-    private void initMediator(){
-        meetMediator = new ConcreteMeetMediator();
-    }
-
-    private void initEquippmentContainer(){
-        equipmentList = new ArrayList<>();
-    }
-
-    private void initUpFloor(Floor floor){
+    public void initUpFloor(Floor floor){
         this.floor = floor;
         currentX = floor.getUpX();
         currentY = floor.getUpY();
@@ -72,7 +55,7 @@ public abstract class AbstractHero extends Observable implements IThing {
         currentY = floor.getDownY();
     }
 
-    private void initBasicInfo(){
+    public void initBasicInfo(){
         this.money = 0;
         this.experience = 0;
 
@@ -250,5 +233,7 @@ public abstract class AbstractHero extends Observable implements IThing {
         return floor;
     }
 
-
+    public ConcreteMeetMediator getMeetMediator() {
+        return meetMediator;
+    }
 }

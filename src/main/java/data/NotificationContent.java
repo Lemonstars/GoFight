@@ -1,5 +1,7 @@
 package data;
 
+import model.thing.hero.AbstractHero;
+
 /**
  * @author 刘兴
  * @version 1.0
@@ -17,11 +19,21 @@ public class NotificationContent {
     private int newX;
     private int newY;
 
+    private AbstractHero hero;
+
     public NotificationContent(int oldX, int oldY, int newX, int newY) {
         this.oldX = oldX;
         this.oldY = oldY;
         this.newX = newX;
         this.newY = newY;
+    }
+
+    public AbstractHero getHero() {
+        return hero;
+    }
+
+    public void setHero(AbstractHero hero) {
+        this.hero = hero;
     }
 
     public int getOldX() {

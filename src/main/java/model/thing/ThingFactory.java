@@ -35,13 +35,19 @@ public class ThingFactory {
     private static final Map<Integer, IThing> THING_MAP = new HashMap<>(32);
 
     public static AbstractHero createAttacker(Floor floor){
-        AbstractHero hero = new AttackerHero(floor);
+        AbstractHero hero = new AttackerHero();
+        hero.initUpFloor(floor);
+        hero.initBasicInfo();
+        hero.initRole();
         THING_MAP.put(ThingType.HERO.ordinal(), hero);
         return hero;
     }
 
     public static AbstractHero createDefender(Floor floor){
-        AbstractHero hero = new DefenderHero(floor);
+        AbstractHero hero = new DefenderHero();
+        hero.initUpFloor(floor);
+        hero.initBasicInfo();
+        hero.initRole();
         THING_MAP.put(ThingType.HERO.ordinal(), hero);
         return hero;
     }

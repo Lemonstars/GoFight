@@ -16,6 +16,7 @@ public class TileThing implements IThing, IColleague {
     @Override
     public void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
         hero.moveTo(newX, newY);
+        hero.notifyObserverChanged(content);
     }
 
     @Override

@@ -36,6 +36,5 @@ public class ConcreteMeetMediator implements IMeetMediator {
             ((IColleague)thing).mediate(hero, newX, newY, notificationContent);
         }
 
-        hero.notifyObserverChanged(notificationContent);
     }
 }

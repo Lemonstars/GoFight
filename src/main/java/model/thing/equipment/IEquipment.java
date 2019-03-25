@@ -13,9 +13,11 @@ import model.thing.hero.mediator.IColleague;
 public interface IEquipment extends IThing, IColleague{
 
     @Override
-    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent notificationContent) {
+    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
         hero.equip(this);
-        notificationContent.setEquipmentChanged(true);
+        content.setEquipmentChanged(true);
+        content.setHero(hero);
         hero.moveTo(newX, newY);
+        hero.notifyObserverChanged(content);
     }
 }

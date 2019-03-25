@@ -13,10 +13,12 @@ import model.thing.hero.mediator.IColleague;
 public interface IStep extends IThing, IColleague{
 
     @Override
-    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent notificationContent) {
+    default void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
         step(hero);
-        notificationContent.setFloorChanged(true);
-        notificationContent.setRoleChanged(true);
+        content.setHero(hero);
+        content.setFloorChanged(true);
+        content.setRoleChanged(true);
+        hero.notifyObserverChanged(content);
     }
 
     /**
