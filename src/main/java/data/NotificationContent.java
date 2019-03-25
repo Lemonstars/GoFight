@@ -9,10 +9,11 @@ import model.thing.hero.AbstractHero;
  */
 public class NotificationContent {
 
+    private boolean equipmentChanged;
+    private boolean weaponChanged;
     private boolean floorChanged;
     private boolean roleChanged;
     private boolean keyChanged;
-    private boolean equipmentChanged;
     private boolean decorated;
 
     private int oldX;
@@ -43,6 +44,14 @@ public class NotificationContent {
 
     public void setDecorated(boolean decorated) {
         this.decorated = decorated;
+    }
+
+    public boolean isWeaponChanged() {
+        return weaponChanged;
+    }
+
+    public void setWeaponChanged(boolean weaponChanged) {
+        this.weaponChanged = weaponChanged;
     }
 
     public int getOldX() {

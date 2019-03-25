@@ -2,8 +2,13 @@ package model.thing.hero.decorator;
 
 import data.NotificationContent;
 import model.floor.Floor;
+import model.thing.ThingType;
 import model.thing.equipment.IEquipment;
 import model.thing.hero.AbstractHero;
+import model.thing.hero.mediator.ConcreteMeetMediator;
+import model.thing.weapon.IWeapon;
+
+import java.util.List;
 
 /**
  * @author 刘兴
@@ -101,4 +106,101 @@ public class SwordDecorator extends AbstractWeaponDecorator {
     public void moveTo(int newX, int newY) {
         basicHero.moveTo(newX, newY);
     }
+
+    @Override
+    public void increaseMoney(int num) {
+        basicHero.increaseMoney(num);
+    }
+
+    @Override
+    public void increaseExperience(int num) {
+        basicHero.increaseExperience(num);
+    }
+
+    @Override
+    public void increaseAttack(int num) {
+        basicHero.increaseAttack(num);
+    }
+
+    @Override
+    public void increaseDefence(int num) {
+        basicHero.increaseDefence(num);
+    }
+
+    @Override
+    public void increaseBlood(int num) {
+        basicHero.increaseBlood(num);
+    }
+
+    @Override
+    public void increaseYellowKey() {
+        basicHero.increaseYellowKey();
+    }
+
+    @Override
+    public void increaseBlueKey() {
+        basicHero.increaseBlueKey();
+    }
+
+    @Override
+    public void increaseRedKey() {
+        basicHero.increaseRedKey();
+    }
+
+    @Override
+    public void decreaseYellowKey() {
+        basicHero.decreaseYellowKey();
+    }
+
+    @Override
+    public void decreaseBlueKey() {
+        basicHero.decreaseBlueKey();
+    }
+
+    @Override
+    public void decreaseRedKey() {
+        basicHero.decreaseRedKey();
+    }
+
+    @Override
+    public void acquireWeapon(IWeapon weapon) {
+        basicHero.acquireWeapon(weapon);
+    }
+
+    @Override
+    public List<IEquipment> getEquipmentList() {
+        return basicHero.getEquipmentList();
+    }
+
+    @Override
+    public List<IWeapon> getWeaponList() {
+        return basicHero.getWeaponList();
+    }
+
+    @Override
+    public void setBlood(int blood) {
+        basicHero.setBlood(blood);
+    }
+
+    @Override
+    public int getCurrentX() {
+        return basicHero.getCurrentX();
+    }
+
+    @Override
+    public int getCurrentY() {
+        return basicHero.getCurrentY();
+    }
+
+    @Override
+    public Floor getFloor() {
+        return basicHero.getFloor();
+    }
+
+    @Override
+    public ConcreteMeetMediator getMeetMediator() {
+        return basicHero.getMeetMediator();
+    }
+
+
 }

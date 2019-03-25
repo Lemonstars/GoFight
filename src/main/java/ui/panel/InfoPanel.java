@@ -4,6 +4,7 @@ import data.NotificationContent;
 import model.thing.equipment.BookThing;
 import model.thing.equipment.IEquipment;
 import model.thing.hero.AbstractHero;
+import model.thing.weapon.IWeapon;
 import ui.dialog.MonsterDialog;
 
 import javax.swing.*;
@@ -30,6 +31,8 @@ public class InfoPanel extends JPanel implements Observer{
 
     private JButton[] equipmentButton = new JButton[2];
 
+    private JLabel[] weaponLabel;
+
     public InfoPanel(AbstractHero hero) {
         hero.addObserver(this);
 
@@ -40,7 +43,7 @@ public class InfoPanel extends JPanel implements Observer{
         configTitleLabel();
         configKeyHintLabel();
         configKeyContent(hero);
-        configDecoratorButton();
+        configEquipmentButton();
 
         this.setVisible(true);
     }
@@ -55,6 +58,10 @@ public class InfoPanel extends JPanel implements Observer{
 
         if(content.isEquipmentChanged()){
             showEquipment(hero);
+        }
+
+        if(content.isWeaponChanged()){
+            showWeapon(hero);
         }
 
     }
@@ -101,7 +108,7 @@ public class InfoPanel extends JPanel implements Observer{
         }
     }
 
-    private void configDecoratorButton(){
+    private void configEquipmentButton(){
         for(int i = 0; i< equipmentButton.length; i++){
             equipmentButton[i] = new JButton();
             equipmentButton[i].setBounds(430, 50 + 60 * i, 80, 50);
@@ -121,7 +128,19 @@ public class InfoPanel extends JPanel implements Observer{
                 equipmentButton[i].addActionListener(e -> new MonsterDialog(description));
             }
         }
+    }
 
+    private void showWeapon(AbstractHero hero){
+        List<IWeapon> weaponList = hero.getWeaponList();
+        weaponLabel = new JLabel[weaponList.size()];
+        for(int i=0; i < weaponList.size(); i++){
+            IWeapon weapon = weaponList.get(i);
+            String name = weapon.getDescription();
+            weaponLabel[i] = new JLabel(name);
+            add(weaponLabel[i]);
+            weaponLabel[i].setBounds(30, 50 + 40 * i, 50, 30);
+            weaponLabel[i].setVisible(true);
+        }
     }
 
 

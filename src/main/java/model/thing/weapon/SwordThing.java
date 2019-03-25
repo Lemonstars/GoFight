@@ -14,12 +14,14 @@ public class SwordThing implements IWeapon{
 
     @Override
     public void mediate(AbstractHero hero, int newX, int newY, NotificationContent content) {
+        hero.acquireWeapon(this);
         hero.moveTo(newX, newY);
         hero = new SwordDecorator(hero);
         hero.initRole();
         content.setHero(hero);
         content.setRoleChanged(true);
         content.setDecorated(true);
+        content.setWeaponChanged(true);
         hero.notifyObserverChanged(content);
     }
 
@@ -30,7 +32,7 @@ public class SwordThing implements IWeapon{
 
     @Override
     public String getDescription() {
-        return "sword";
+        return "绝剑";
     }
 
     @Override

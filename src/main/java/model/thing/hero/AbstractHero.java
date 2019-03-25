@@ -7,6 +7,7 @@ import model.thing.IThing;
 import model.thing.ThingType;
 import model.thing.equipment.IEquipment;
 import model.thing.hero.mediator.ConcreteMeetMediator;
+import model.thing.weapon.IWeapon;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,8 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     protected List<IEquipment> equipmentList = new ArrayList<>();
 
+    protected List<IWeapon> weaponList = new ArrayList<>();
+
     /**
      * delay to initialize according to different roles
      */
@@ -66,6 +69,10 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     public void equip(IEquipment equipment){
         equipmentList.add(equipment);
+    }
+
+    public void acquireWeapon(IWeapon weapon){
+        weaponList.add(weapon);
     }
 
     public void upstairs(){
@@ -139,6 +146,10 @@ public abstract class AbstractHero extends Observable implements IThing {
 
     public List<IEquipment> getEquipmentList() {
         return equipmentList;
+    }
+
+    public List<IWeapon> getWeaponList() {
+        return weaponList;
     }
 
     public void setBlood(int blood) {
